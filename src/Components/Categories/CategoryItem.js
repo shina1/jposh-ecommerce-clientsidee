@@ -29,25 +29,27 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-background : rgba(0, 0, 0, 0.3)
+background-color : rgba(18, 18, 18, 0.5);
 
 
 
 @media ${devices.mobileL} {
   width: 100%;
-  height: auto;
+  height: 100%;
+  background-color : rgba(18, 18, 18, 0.65);
 }
 `
 const Title = styled.h2`
 color: #fff;
 margin-bottom: 20px;
-font-size: 5rem;
+font-size: 3.5rem;
 font-weight: 600;
 text-align:center;
 
 
 @media ${devices.mobileL} {
   font-size: 2rem;
+  font-weight: 600;
 }
 `
 const ItemCat = styled.h3`
