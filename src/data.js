@@ -14,6 +14,14 @@ import slideImageCat7 from './assets/images/slider-image12.jpg'
 import slideImageCat9 from './assets/images/slider-image7.jpg'
 import slideImageCat10 from './assets/images/slider-image5.jpg'
 
+// testimonial images
+
+import custImage1 from './assets/images/cust1.png'
+import custImage2 from './assets/images/cust2.jfif'
+import custImage3 from './assets/images/cust3.jfif'
+import custImage4 from './assets/images/cust4.jfif'
+
+
 export const sliderItems = [
     {
         id: 1,
@@ -160,5 +168,52 @@ export const popularProducts = [
         img: slideImageCat7,
         title: "shirt",
         review: 345
+    }
+]
+
+// testimonials
+
+export const customerTestimonials = [
+    {
+        id: 1,
+        img: custImage1,
+        name: "Jhone Doe",
+        desc: "Fast deliveries, awesome products",
+    },
+    {
+        id: 2,
+        img: custImage2,
+        name: "Jhon Hankock",
+        desc: "The Jposh collections has rapidly become my favourite place to order local atires online. I can shop safe in the knowledge that the cloths will be top quality and true to the thorough online description.",
+    },
+    {
+        id: 3,
+        img: custImage3,
+        name: "Doe Jhon",
+        desc: "The Jposh Collections has the best range of Jumps Suits! I love their entire range of clothing designs, and they have a wonderful curation of solid colors too",
+    },
+    {
+        id: 4,
+        img: custImage1,
+        name: "Doe Jhon",
+        desc: "The Jposh Collections has the best range of Jumps Suits! I love their entire range of clothing designs, and they have a wonderful curation of solid colors too",
+    },
+    {
+        id: 5,
+        img: custImage3,
+        name: "Doe Jhon",
+        desc: "The Jposh Collections has the best range of Jumps Suits! I love their entire range of clothing designs, and they have a wonderful curation of solid colors too",
+    },
+    {
+        id: 6,
+        img: custImage2,
+        name: "Doe Jhon",
+        desc: "The Jposh Collections has the best range of Jumps Suits! I love their entire range of clothing designs, and they have a wonderful curation of solid colors too",
+    },
+    {
+        id: 7,
+        img: custImage4,
+        name: "Doe Jhon",
+        desc: "The Jposh Collections has the best range of Jumps Suits! I love their entire range of clothing designs, and they have a wonderful curation of solid colors too",
     }
 ]

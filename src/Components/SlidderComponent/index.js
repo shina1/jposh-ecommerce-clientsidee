@@ -2,16 +2,24 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@material-ui/icons'
 import './style.css'
-import { sliderItems } from '../../data'
+import { customerTestimonials } from '../../data'
+import { devices } from '../../assets/screenSizes'
 
 
 const Container = styled.div`
     width: 99.6%;
-    height: 90vh;
+    height: 95vh;
     display: flex; 
     margin:0 auto;
     position: relative;
     overflow: hidden;
+
+
+
+    @media ${devices.mobileL} {
+        width: 99.6%;
+        height: 90vh;
+    }
 `
 
 const Arrow = styled.div`
@@ -37,38 +45,63 @@ const Wrapper = styled.div`
     display: flex;
     height: 100%;
     padding: 10px;
+    margin: 0 auto;
     transition: all 1.5s ease-out;
     transform: translateX(${(props) => props.slideIndex * -100}vw); 
+
+
+    @media ${devices.mobileL} {
+        height: 100%; 
+    }
 `
-const Slide = styled.div`
+const Card = styled.div`
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     height: 100%;
-    width: 95vw;
+    width: 50vw;
     align-items: center;
+    text-align: center;
+    margin: 0 10px;
+
+
+    @media ${devices.mobileL} {
+       height: 100%;
+       width: 97vw;
+    }
 `
 const ImageContainer = styled.div`
-    flex: 1;
-    height: 100%;
+    padding:10px 5px;
+    width: 60%;
+    height: 55%;
+
+    @media ${devices.mobileL} {
+        width: 100%;
+    }
 `
 const InfoContainer = styled.div`
-    flex: 1;
-    height: 100%;
+    width: 100%;
+    height: 45%;
     padding: 50px;
+
+    @media ${devices.mobileL} {
+        width: 100%;
+    }
 `
 const Image =  styled.img`
 width: 100%;
 max-width: 100%;
 display: block;
 border: 0;
-height: 90%;
+height: 80%;
 `
-const Title = styled.h1`
-    font-size: 70px;
+const Title = styled.h3`
+    font-size: 20px;
 `
 const Desc = styled.p`
     margin: 50px 0;
-    font-size: 20px;
-    font-weight: 500;
+    font-size: 15px;
+    font-weight: 300;
     letter-spacing: 2px;
 `
 
@@ -77,9 +110,9 @@ const Slidder = () => {
     const [slideIndex, setSlideIndex] = useState(0)
    const handleClick = (direction) =>{
     if(direction === 'left'){
-        setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 2)
+        setSlideIndex(slideIndex > 0 ? slideIndex - 1 : customerTestimonials.length - 1)
     }else{
-        setSlideIndex(slideIndex < 2 ? slideIndex + 1 : 0)
+        setSlideIndex(slideIndex < customerTestimonials.length - 1 ? slideIndex + 1 : 0)
     }
    }
   return (
@@ -89,17 +122,16 @@ const Slidder = () => {
        </Arrow>
       <Wrapper slideIndex={slideIndex}>
       {
-          sliderItems.map(item => (
-            <Slide key={item.id}>
+          customerTestimonials.map(item => (
+            <Card key={item.id}>
                 <ImageContainer>
                     <Image src={item.img} alt="slider-one"/>
                 </ImageContainer>
                 <InfoContainer>
-                    <Title>{item.title}</Title>
-                    <Desc>{item.desc}</Desc>
-                    <button className='btn slider-btn'>SHOP NOW</button>
+                    <Title>{item.name}</Title>
+                    <Desc>"{item.desc}"</Desc>
                 </InfoContainer>
-           </Slide>
+           </Card>
           ))
       }
       </Wrapper>
