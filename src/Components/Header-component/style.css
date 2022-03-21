@@ -1,0 +1,92 @@
+.header-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.header-top{
+    text-align: center;
+    color: #fff;
+    background: #27211F;
+}
+.header-top p{
+    font-size: 14px;
+    font-weight: 500;
+}
+.header-bottom{
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    height: 10vh;
+    margin-bottom: 10px;
+}
+.logo{
+    flex: 0.5;
+}
+.logo img{
+    cursor: pointer;
+}
+.nav-bar-wrapper{
+    flex: 3;
+    margin: 0 5px;
+}
+.nav-bar-wrapper ul{
+    display: flex;
+    justify-content: space-between;
+}
+.nav-bar-wrapper ul li{
+    list-style-type: none;
+    color:rgba(87, 82, 82, 1);
+}
+.nav-bar-wrapper ul li:hover{
+    cursor: pointer;
+}
+/* search , cart and profile icon styling */
+
+.menu-group{
+    display: flex;
+    flex-direction: row;
+    flex: 2;
+    align-items: center;
+    padding: 0 5px;
+}
+.search-container{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 5px;
+    border-radius: 5px;
+}
+.search-container input{
+    padding: 5px;
+    border: 0.00002px solid #C09621;
+    border-radius: 5px;
+}
+.search-container .MuiSvgIcon-root{
+    font-size:18px;
+} 
+.MuiSvgIcon-root{
+    color: #C09621;
+    cursor: pointer;
+}
+.menu-group-right{
+display: flex;
+width: 50%;
+align-items: center;
+justify-content: space-between;
+margin: 0 5px;
+padding: 10px 20px;
+}
+
+.menu-group-right span {
+    font-size: 14px;
+}
+
+.burger{
+    display: none;
+}
+.MuiBadge-colorPrimary{
+    background: #C09621 !important;
+    color:#fff !important;
+    /* border: 1px solid ; */
+}

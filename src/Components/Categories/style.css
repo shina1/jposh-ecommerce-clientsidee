@@ -1,0 +1,20 @@
+.category-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-gap: 2rem;
+    padding:20px;
+    height:auto;
+}
+
+
+
+@media screen and (max-width: 560px) {
+    .category-container{
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+        grid-gap: 2rem;
+        padding:20px;
+        height:auto;
+    }
+}
