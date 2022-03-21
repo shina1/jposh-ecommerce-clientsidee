@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { devices } from '../../assets/screenSizes'
 
 const Container = styled.div`
 flex:1;
@@ -7,6 +8,11 @@ margin:3px;
 height:70vh;
 position: relative;
 cursor: pointer;
+
+@media ${devices.mobileL} {
+ width: 100%;
+ height: auto;
+}
 `
 const Image = styled.img`
 width:100%;
@@ -24,6 +30,13 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 background : rgba(0, 0, 0, 0.3)
+
+
+
+@media ${devices.mobileL} {
+  width: 100%;
+  height: auto;
+}
 `
 const Title = styled.h2`
 color: #fff;
@@ -31,6 +44,11 @@ margin-bottom: 20px;
 font-size: 5rem;
 font-weight: 600;
 text-align:center;
+
+
+@media ${devices.mobileL} {
+  font-size: 2rem;
+}
 `
 const ItemCat = styled.h3`
 color: #fff;

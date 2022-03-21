@@ -17,15 +17,16 @@ const Container = styledComponents.div`
 
 
     @media ${devices.mobileL} {
+        height: 75vh;
         width: 100%;
         margin: 0 auto;
     }
 `
 const Left = styledComponents.div`
-width: 30%;
-height: 100%;
-padding:20px;
-margin: 10px auto;
+    width: 30%;
+    height: auto;;
+    padding:20px;
+    margin: 20px auto;
 
 
 @media ${devices.mobileL} {
@@ -33,20 +34,22 @@ margin: 10px auto;
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
+    height: auto;
     padding:10px 20px;
     text-align: center;
-    margin: 0 auto;
+    margin: 10px auto;
 }
 `
 const Center = styledComponents.div`
 width: 40%;
-height: 100%;
+height: auto;
 margin: 10px auto;
 
 @media ${devices.mobileL} {
     width: 100%;
+    height: auto;
     padding:10px;
-    margin: 0 auto;
+    margin: 10px auto;
 }
 `
 const Right = styledComponents.div`
@@ -59,8 +62,9 @@ paddin: 10px 5px;
 // small screen styling
 @media ${devices.mobileL} {
     width: 100%;
+    height: auto;
     padding:20px 10px;
-    margin: 0 auto;
+    margin: 10px auto;
 }
 `
 
