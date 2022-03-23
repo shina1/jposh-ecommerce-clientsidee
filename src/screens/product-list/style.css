@@ -1,0 +1,97 @@
+.filter-container{
+    display: flex;
+    justify-content: space-between;
+}
+.select-filter{
+    width: 60%;
+    margin: 0 5px;
+    display: flex;
+    padding: 5px 5px;
+}
+.select-filter select{
+    margin: 0 10px;
+    height:100%;
+    width: 100%;
+    border: 1px solid #C09621;
+    border-radius: 5px;
+    padding: 3px 10px; 
+}
+.filter-right span{
+    font-size: medium;
+    font-weight: bold;
+}
+.filter-right{
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    padding: 10px;
+}
+.filter{
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+    padding: 10px;
+}
+.select{
+    width: 60%;
+    margin: 0 5px;
+    padding: 5px 5px;
+}
+.filter span{
+    font-size: medium;
+    font-weight: bold;
+}
+
+.filter select{
+    margin: 0 10px;
+    height:100%;
+    width: 80%;
+    border: 1px solid #C09621;
+    border-radius: 5px;
+    padding: 3px 10px; 
+}
+/* .filter select:active{
+    border: none;
+} */
+.inner-container .title{
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+    text-transform: uppercase;
+}
+
+@media screen and (max-width: 560px) {
+    .inner-container{
+        padding: 5px;
+        margin: 10px auto;
+        height: auto;
+    }
+    .filter-container{
+        flex-direction: column;
+        padding: 10px 5px;
+        margin: 0 auto;
+    }
+    .filter-right{
+        width: 100%;
+        margin: 10px auto;
+       
+    }
+    .filter-right select{
+        font-weight: bold;
+    }
+    .filter{
+        width: 100%;
+        margin: 10px auto;
+    }
+    .filter select{
+        width: 50%;
+        font-weight: bold;
+    }
+}

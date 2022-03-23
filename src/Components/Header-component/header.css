@@ -127,9 +127,6 @@ padding: 10px 20px;
         font-size: 1.5rem;
         font-weight: 500;
       }
-      li {
-        border: 2px solid red;
-      }
     .logo{
         margin-top: 10px;
         flex:0.3;
