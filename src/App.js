@@ -1,5 +1,7 @@
 import React from 'react'
-import SingleProduct from './screens/single-product'
+// import Login from './screens/login'
+import Register from './screens/register'
+// import SingleProduct from './screens/single-product'
 // import Home from './screens/home-screen'
 // import ProductList from './screens/product-list/index.js'
 
@@ -8,7 +10,9 @@ const App = () => {
     <div>
       {/* <Home /> */}
       {/* <ProductList /> */}
-      <SingleProduct />
+      {/* <SingleProduct /> */}
+      <Register />
+      {/* <Login /> */}
     </div>
   )
 }
