@@ -1,0 +1,122 @@
+main{
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(rgba(18, 18, 18, 0.85), rgba(18, 18, 18, 0.85) ) , url('../../assets/vectors/vector1.jpg') center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.title-container{
+    max-width: 100%;
+    width: 100%;
+    text-align: center;
+}
+.title-container h2{
+    font-size: 26px;
+    color: #fff;
+    font-weight: 300;
+}
+.title-container p{
+    color: #fff;
+    font-size: 16px;
+}
+.title-container p span a{
+    color: rgb(86, 86, 231);
+    text-decoration: none;
+}
+.form-container{
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 35%;
+    width: 100%;
+    height: auto;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+.form-container form{
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+}
+.form-container input{
+    display: block;
+    border: 0.5px solid grey;
+    border-radius: 5px;
+    padding: 10px;
+    width: 70%;
+    margin: 10px auto;
+}
+.form-container span{
+    display: block;
+    font-size: 13px;
+    font-weight: 400;
+    margin: 10px 5px;
+    padding: 5px;
+    height: auto;
+}
+.register-btn{
+    border: none;
+    background: #C09621;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 10px 5px;
+    width: 30%;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+
+/* small screen styling */
+
+@media screen and (max-width: 560px) {
+    .form-container{
+        width: 100%;
+        text-align: center;
+    }
+    main{
+        padding: 20px 10px;
+        height: 100vh;
+    }
+    .form-container input{
+        width: 100%;
+    }
+    .register-btn{
+        width: 80%;
+        margin: 10px auto;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .form-container{
+        width: 80%;
+        text-align: center;
+    }
+    main{
+        padding: 20px 10px;
+        height: 100vh;
+    }
+    .form-container input{
+        width: 100%;
+    }
+    .register-btn{
+        width: 80%;
+        margin: 10px auto;
+    }
+}
+@media screen and (max-width: 320px) {
+    main{
+        padding: 20px 10px;
+        height: 100%;
+    }
+    .form-container{
+        width: 100%;
+        text-align: center;
+    }
+}
