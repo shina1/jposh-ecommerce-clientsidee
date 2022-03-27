@@ -4,6 +4,7 @@ import { ReactComponent as MenuIcon } from "../../assets/icons/menu.svg";
 import  jposhlogo  from "../../assets/images/logo.ico";
 import "./resheader.css";
 import styledComponents from 'styled-components';
+import { ShoppingCart } from '@material-ui/icons';
 
 const Logo = styledComponents.img``
 
@@ -40,8 +41,8 @@ const ResponsiveHeader = () => {
             <a href="#">SIGN-IN</a>
           </li>
           <li className="option mobile-option" onClick={closeMobileMenu}>
-            <a href="" className="sign-up">
-              SIGN-UP
+            <a href="" className="cart-icon">
+              <ShoppingCart />
             </a>
           </li>
         </ul>
@@ -51,8 +52,8 @@ const ResponsiveHeader = () => {
           <a href="#">SIGN-IN</a>
         </li>
         <li onClick={closeMobileMenu}>
-          <a href="" className="signup-btn">
-            SIGN-UP
+          <a href="" className="cart-bgsc-btn">
+          <ShoppingCart />
           </a>
         </li>
       </ul>

@@ -19,7 +19,11 @@ const Container = styledComponents.div`
     @media ${devices.mobileL} {
         height: 75vh;
         width: 100%;
-        margin: 0 auto;
+        margin: 40px auto 0 auto;
+    }
+
+
+    @media ${devices.mobileS} {
     }
 `
 const Left = styledComponents.div`
