@@ -15,7 +15,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 0px 40px;
-    height: 10vh;
+    height: 15vh;
   }
   .logo-nav {
     display: flex;
@@ -60,19 +60,18 @@
   .sign-in {
     padding-right: 50px;
     align-self: center;
+    /* color: #C09621; */
+  }
+  .sign-in a{
+    color: #C09621
   }
   .sign-in :hover {
     color: #000;
+    
   }
-  .signup-btn {
-    padding: 10px 10px;
-    height: 2.4rem;
-    border-radius: 3px;
-    background: transparent;
-    border: 1px solid #C09621;
+  .cart-bgsc-btn {
     color: #C09621;
     cursor: pointer;
-    align-items: center;
   }
   .mobile-menu {
     display: none;
@@ -83,6 +82,7 @@
       width: 100%;
       overflow-x: hidden;
       /* padding: 0px 10px; */
+      margin-bottom: 10px;
     }
     .logo {
       width: 45px;
@@ -129,15 +129,10 @@
       height: 10vw;
       padding: 30px 0px;
     }
-    .sign-up {
-        background: transparent;
-        border: 1px solid #C09621;
+    .cart-icon {
         color: #C09621;
-        border-radius: 10px;
-        padding: 20px 0px;
         width: 80%;
         align-self: center;
-        border-radius: 3px;
         text-align: center;
     }
   
