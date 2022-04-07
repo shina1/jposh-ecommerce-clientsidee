@@ -14,7 +14,7 @@ const SingleProduct = () => {
         <ResponsiveHeader/>
         <section className='inner-container'>
             <div className='image-cont'>
-                <img src={productImg}/>
+                <img src={productImg} alt='single product'/>
             </div>
             <div className='product-desc'>
                 <h3>Jump Suit</h3>
