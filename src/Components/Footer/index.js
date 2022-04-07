@@ -7,6 +7,7 @@ import payment from '../../assets/images/payment.png'
 import { Facebook, Instagram, MailOutlined, Phone, Room, Twitter } from '@material-ui/icons'
 
 import './style.css'
+import { Link } from 'react-router-dom'
 
 const Container = styledComponents.div`
     height: 45vh;
@@ -189,13 +190,12 @@ const Footer = () => {
                 <List>
                     <ListItem>Home</ListItem>
                     <ListItem>About</ListItem>
-                    <ListItem>Cart</ListItem>
-                    <ListItem>Man Fashion</ListItem>
-                    <ListItem>Woman Fashion</ListItem>
-                    <ListItem>Accessories</ListItem>
-                    <ListItem>My Account</ListItem>
-                    <ListItem>Terms and Conditions</ListItem>
-                    <ListItem>Contact Us</ListItem>
+                    <ListItem><Link to={"/cart"}>Cart</Link></ListItem>
+                    <ListItem><Link to={"/products"}>Men Fashion</Link></ListItem>
+                    <ListItem><Link to={"/products"}>Women Fashion</Link></ListItem>
+                    <ListItem><Link to={"/products"}>Accessories</Link></ListItem>
+                    <ListItem><Link to={"/privacy"}>Terms and Conditions</Link></ListItem>
+                    <ListItem><Link to={"/contact"}>Contact Us</Link></ListItem>
                 </List>
             </Center>
             <Right>

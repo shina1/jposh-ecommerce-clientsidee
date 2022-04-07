@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styledComponents from 'styled-components'
 import { devices } from '../../assets/screenSizes'
 import Divider from '../Divider/index'
@@ -35,9 +36,11 @@ const About = () => {
       <Divider section={'ABOUT'}/>
         <div className='about-container'>
           <p>
-          Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis.
+              <span className='about-enph'>Jposh collection</span> a ready to wear fashion trend was founded in 2021 by a Nigerian fashion designer and content creator, <span className='about-enph'>Jumai Usman-Ibrahim</span> in London, U.K.
+              The fashion store has created many <b>ready to wear</b> outfits leaning heavily on the influnce of culture and lifestyle. Some of thses outfits includes Aso-Ebi, costume wears, Bridal wears.
+              Every our wears are carefully made to suit our customers and are ordered widely both in London and accross the globe.
           </p>
-          <Button>READ MORE</Button>
+          <Button> <Link to={'/about-us'} style={{color: '#C09621'}}>READ MORE</Link></Button>
         </div>
     </Box>
   )

@@ -23,7 +23,7 @@ const Cart = () => {
         setProCount(proCount - 1)
     }
   return (
-    <main>
+    <main className='cart-main-cont'>
         <ResponsiveHeader />
         <section className='cart-container'>
             <div className='title-container'><h2>Your Bag</h2></div>

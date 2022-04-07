@@ -5,6 +5,7 @@ import  jposhlogo  from "../../assets/images/logo.ico";
 import "./resheader.css";
 import styledComponents from 'styled-components';
 import { ShoppingCart } from '@material-ui/icons';
+import { Link } from 'react-router-dom';
 
 const Logo = styledComponents.img``
 
@@ -19,29 +20,30 @@ const ResponsiveHeader = () => {
     </div>
     <div className="header">
         <div className="logo-container">
-          <a href="#">
+          <a href="/">
             <Logo src={jposhlogo} alt='jposh logo'className="logo" />
           </a>
         </div>
       <div className="logo-nav">
         <ul className={click ? "nav-options active" : "nav-options"}>
           <li className="option" onClick={closeMobileMenu}>
-            <a href="#">HOME</a>
+            <a href="/">HOME</a>
           </li>
           <li className="option" onClick={closeMobileMenu}>
-            <a href="#">CATEGORIES</a>
+            <a href="#cat">CATEGORIES</a>
           </li>
           <li className="option" onClick={closeMobileMenu}>
-            <a href="#">ABOUT</a>
+            <a href="#about">ABOUT</a>
           </li>
           <li className="option" onClick={closeMobileMenu}>
-            <a href="#">CONTACT</a>
+            <Link to={"/contact"}>CONTACT</Link>
           </li>
           <li className="option mobile-option" onClick={closeMobileMenu}>
-            <a href="#">SIGN-IN</a>
+            {/* <a href="/login"></a> */}
+            <Link to={"/login"}>SIGN-IN</Link>
           </li>
-          <li className="option mobile-option" onClick={closeMobileMenu}>
-            <a href="" className="cart-icon">
+          <li className="option mobile-option">
+            <a href="/cart" className="cart-icon">
               <ShoppingCart />
             </a>
           </li>
@@ -49,14 +51,21 @@ const ResponsiveHeader = () => {
       </div>
       <ul className="signin-up">
         <li className="sign-in" onClick={closeMobileMenu}>
-          <a href="#">SIGN-IN</a>
+        <Link to={"/login"}>SIGN-IN</Link>
         </li>
-        <li onClick={closeMobileMenu}>
-          <a href="" className="cart-bgsc-btn">
+        {/* <li onClick={closeMobileMenu}>
+          <a href="/cart" className="cart-bgsc-btn">
           <ShoppingCart />
           </a>
-        </li>
+        </li> */}
+         <li>
+          <a href="/cart" className="cart-bgsc-btn">
+          <ShoppingCart />
+          </a>
+      </li>
+       
       </ul>
+     
       <div className="mobile-menu" onClick={handleClick}>
         {click ? (
           <CloseMenu className="menu-icon" />

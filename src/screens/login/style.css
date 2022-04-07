@@ -1,4 +1,4 @@
-main{
+.login-main-cont{
     width: 100vw;
     height: 100vh;
     background: linear-gradient(rgba(18, 18, 18, 0.85), rgba(18, 18, 18, 0.85) ) , url('../../assets/vectors/vector1.jpg') center;
@@ -9,25 +9,25 @@ main{
     align-items: center;
     flex-direction: column;
 }
-.title-container{
+.login-title-container{
     max-width: 100%;
     width: 100%;
     text-align: center;
 }
-.title-container h2{
+.login-title-container h2{
     font-size: 26px;
     color: #fff;
     font-weight: 300;
 }
-.title-container p{
+.login-title-container p{
     color: #fff;
     font-size: 16px;
 }
-.title-container p span a{
+.login-title-container p span a{
     color: rgb(86, 86, 231);
     text-decoration: none;
 }
-.form-container{
+.login-form-container{
     border-radius: 10px;
     padding: 20px;
     max-width: 35%;
@@ -38,12 +38,12 @@ main{
     flex-direction: column;
     margin: 0 auto;
 }
-.form-container form{
+.login-form-container form{
     width: 90%;
     margin: 0 auto;
     text-align: center;
 }
-.form-container input{
+.login-form-container input{
     display: block;
     border: 0.5px solid grey;
     border-radius: 5px;
@@ -51,7 +51,7 @@ main{
     width: 70%;
     margin: 10px auto;
 }
-.form-container span{
+.login-form-container span{
     display: block;
     font-size: 13px;
     font-weight: 400;
@@ -59,7 +59,7 @@ main{
     padding: 5px;
     height: auto;
 }
-.register-btn{
+.login-sumit-btn{
     border: none;
     background: #C09621;
     color: #fff;
@@ -76,46 +76,46 @@ main{
 /* small screen styling */
 
 @media screen and (max-width: 560px) {
-    .form-container{
+    .login-form-container{
         width: 100%;
         text-align: center;
     }
-    main{
+    .login-main-cont{
         padding: 20px 10px;
         height: 100vh;
     }
-    .form-container input{
+    .login-form-container input{
         width: 100%;
     }
-    .register-btn{
+    .login-sumit-btn{
         width: 80%;
         margin: 10px auto;
     }
 }
 
 @media screen and (max-width: 768px) {
-    .form-container{
+    .login-form-container{
         width: 80%;
         text-align: center;
     }
-    main{
+    .login-main-cont{
         padding: 20px 10px;
         height: 100vh;
     }
-    .form-container input{
+    .login-form-container input{
         width: 100%;
     }
-    .register-btn{
+    .login-sumit-btn{
         width: 80%;
         margin: 10px auto;
     }
 }
 @media screen and (max-width: 320px) {
-    main{
+    .login-main-cont{
         padding: 20px 10px;
         height: 100%;
     }
-    .form-container{
+    .login-form-container{
         width: 100%;
         text-align: center;
     }

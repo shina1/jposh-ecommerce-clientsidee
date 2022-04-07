@@ -1,5 +1,7 @@
 
-
+main{
+    width: 100%;
+}
 .cart-top{
     display: flex;
     justify-content: space-between;
@@ -175,14 +177,14 @@
 /* small screen styling */
 
 @media screen and (max-width: 560px) {
-    main{
-        /* background-color: red; */
+    .cart-main-cont{
+        background-color: red;
         width: 100%;
     }
 }
 
 @media screen and (max-width: 768px) {
-    main{
+    .cart-main-cont{
         width: 100%;
     }
     .cart-top{
@@ -230,7 +232,7 @@
     }
 }
 @media screen and (max-width: 320px) {
-    main{
+    .cart-main-cont{
         width: 100%;
         height: auto;
     }
