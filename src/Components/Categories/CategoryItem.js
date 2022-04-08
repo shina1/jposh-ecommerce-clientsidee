@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { devices } from '../../assets/screenSizes'
 
@@ -75,12 +76,14 @@ opacity: 0.85;
 const CategoryItem = ({category}) => {
   return (
     <Container>
-            <Image src={category.img} alt='categories'/>
-            <InfoCont>
-                <Title>{category.title}</Title>
-                <ItemCat>{category.cat}</ItemCat>
-                <Button>SHOP NOW</Button>
-            </InfoCont>
+            <Link to={`/products/${category.cat}`}>
+              <Image src={category.img} alt='categories'/>
+              <InfoCont>
+                  <Title>{category.cat}</Title>
+                  <ItemCat>{category.no}</ItemCat>
+                  <Button>SHOP NOW</Button>
+              </InfoCont>
+            </Link>
     </Container>
   )
 }
