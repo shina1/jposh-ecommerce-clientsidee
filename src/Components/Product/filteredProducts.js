@@ -1,15 +1,16 @@
 
 import { FavoriteBorderOutlined, SearchOutlined, ShoppingCartOutlined, StarRateOutlined, } from '@material-ui/icons'
 import React from 'react'
-import { Link } from 'react-router-dom'
 import './style.css'
+import './filteredProducts.css'
+import { Link } from 'react-router-dom'
 
 
-const PopularProducts = ({product}) => {
+const FilteredProducts = ({product}) => {
   return (
-        <div className='popularProduct-container'>
+        <div className='filteredProduct-container'>
           <div className='productWrapper'>
-            <img src={product.img} alt="Popular Products"/>
+            <img src={product.img} alt="filtered Products"/>
             <div className='productWrapper-footer'>
               <div className='inner'>
                   <div className='ratings'>
@@ -38,6 +39,6 @@ const PopularProducts = ({product}) => {
   )
 }
 
-export default PopularProducts
+export default FilteredProducts
 
 
