@@ -6,6 +6,7 @@ import ProductList from './screens/product-list/index.js'
 import Cart from './screens/cart'
 import Login from './screens/login'
 import Register from './screens/register'
+import AllProductList from './screens/all-products'
 
 const App = () => {
   const user = true
@@ -13,11 +14,12 @@ const App = () => {
     <Router>
       <Routes>
         <Route exact path="/" element={<Home/>}/>
-        <Route exact path="/products/:category" element={<ProductList />}/>
+        <Route  path="/products/:category" element={<ProductList />}/>
         <Route exact path="/product/:id" element={ <SingleProduct /> }/>
-        <Route exact path="/cart" element={<Cart />}/>
-        <Route exact path="/register" element={<Register />}/>
-        <Route exact path="/login" element={<Login />}/>
+        <Route path='/products' element={< AllProductList />}></Route>
+        <Route  path="/cart" element={<Cart />}/>
+        <Route  path="/register" element={<Register />}/>
+        <Route  path="/login" element={<Login />}/>
       </Routes>
     </Router>
     // <>

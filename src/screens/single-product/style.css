@@ -1,6 +1,7 @@
 
-.inner-container{
+.single-product-inner-container{
     display: flex;
+    flex-direction: row;
     margin: 50px auto;
     padding: 50px;
 }
@@ -94,7 +95,7 @@
 }
 
 @media screen and (max-width: 560px) {
-    .inner-container{
+    .single-product-inner-container{
         display: flex;
         flex-direction: column;
         width: 100%;

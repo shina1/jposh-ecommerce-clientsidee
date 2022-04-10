@@ -1,54 +1,91 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Footer from '../../Components/Footer'
 import ResponsiveHeader from '../../Components/Header-component/ResponsiveHeader'
 import Newsletter from '../../Components/Newsletter'
 import Products from '../../Components/Product/Products'
 import './style.css'
 
-import productImg from '../../assets/images/slider-image6.jpg'
 import { Add, Remove } from '@material-ui/icons'
+import { useLocation } from 'react-router-dom'
+import { publicRequest } from '../../utils/requestMethods'
+import { useDispatch } from 'react-redux'
+import { addProduct } from '../../store/cartStore'
 
 const SingleProduct = () => {
+    const location = useLocation()
+    const id = location.pathname.split("/")[2];
+    const [product, setProduct] = useState({})
+    const [quantity, setQuantity] = useState(1)
+    const [color, setColor] = useState("")
+    const [size, setSize] = useState("")
+    const dispatch = useDispatch()
+    useEffect(() => {
+        const getProductById = async ()=> {
+           try {
+                const res = await publicRequest.get(`/products/find/${id}`)
+                setProduct(res.data) 
+           } catch (error) {
+              throw new Error(error)
+           }
+        }
+
+        getProductById()
+    }, [id])
+
+
+    const handleQuantity = (param) => {
+        if(param === "inc"){
+            setQuantity(quantity + 1)
+        }else{
+            quantity > 1 && setQuantity(quantity - 1)
+        }
+    }
+    const handleAddToCart = () => {
+        // update our cart
+        dispatch(addProduct({...product, quantity, color, size}))
+    }
   return (
-    <div className='container'>
+    <div className='single-product-container'>
         <ResponsiveHeader/>
-        <section className='inner-container'>
+        <section className='single-product-inner-container'>
             <div className='image-cont'>
-                <img src={productImg} alt='single product'/>
+                <img src={product.img} alt='single product'/>
             </div>
             <div className='product-desc'>
-                <h3>Jump Suit</h3>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis 
+                <h3>{product.title}</h3>
+                <p>
+                    {product.desc}
                 </p>
-                <span>£ 20</span>
+                <span>£ {product.price}</span>
                 <div className='filter-cotainer'>
                     <div className='color-filter filter-box'>
-                        <select>
+                        <select onChange={(e) => setColor(e.target.value)}>
                             <option disabled selected>color</option>
-                            <option value='white'>white</option>
-                            <option value='black'>Black</option>
-                            <option value='gray'>Red</option>
-                            <option value='blue'>Blue</option>
+                            {
+                                product.color && product.color.map((el) => (
+                                    <option value={el} key={el}>{el}</option>
+                                ))
+                            }
                         </select>
                     </div>
                     <div className='size-filter filter-box'>
-                        <select>
+                        <select onChange={(e) => setSize(e.target.value)}>
                             <option disabled selected>Size</option>
-                            <option>XS</option>
-                            <option>S</option>
-                            <option>M</option>
-                            <option>L</option>
-                            <option>XL</option>
+                            {
+                                product.size && product.size.map((el) => (
+                                    <option value={el} key={el}>{el}</option>
+                                ))
+                            }
                         </select>
                     </div>
                 </div>
                 <div className='addContainer'>
                     <div className='amount-container'>
-                        <Remove />
-                        <span className='amount'>1</span>
-                        <Add />
+                        <Remove onClick={()=>handleQuantity("dec")}/>
+                        <span className='amount'>{quantity}</span>
+                        <Add onClick={()=>handleQuantity("inc")}/>
                     </div>
-                    <button className='add-to-cart'>ADD TO CART</button>
+                    <button className='add-to-cart' onClick={handleAddToCart}>ADD TO CART</button>
                 </div>
             </div>
         </section>

@@ -3,14 +3,18 @@
     height: auto;
     margin: 40px auto 10px auto; 
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)
-    );
+    /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)
+    ); */
+    /* grid-template-columns: minmax(200px, max-content)
+                       repeat(auto-fill, 300px) 25%; */
+    grid-template-columns: 300px repeat(auto-fill, 300px) 300px;
     grid-gap: 1rem;
 }
 /* product wrapper styling */
 
 .productWrapper{
   margin: 20px 0;
+  width: 100%;
 }
 
 .productWrapper > img{
@@ -23,7 +27,7 @@
 }
 
 .productWrapper:hover img{
-    transform: scale(1.05);
+    transform: scale(1.01);
     transition: all 0.5s ease-in;
 }
 /* product wrapper footer */

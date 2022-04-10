@@ -31,7 +31,9 @@ const FilteredProducts = ({product}) => {
                     <FavoriteBorderOutlined />
                 </div>
               </div>
-             <div className='product-details-foot'><h4>{product.title}</h4>
+             <div className='product-details-foot'>
+               <h4>{product.title}</h4>
+               <h4>£{product.price}</h4>
              </div>
             </div>
           </div>
