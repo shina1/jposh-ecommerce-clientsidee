@@ -6,6 +6,8 @@ import './style.css'
 import productImage from '../../assets/images/slider-image2.jpg'
 import { Add, Remove } from '@material-ui/icons'
 import styledComponents from 'styled-components'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 
 const Hr = styledComponents.hr`
@@ -14,13 +16,16 @@ border: none;
 height: 1px;
 `
 const Cart = () => {
-    const [proCount, setProCount] = useState(1)
-
-    const handleIncrease =()=>{
-        setProCount(proCount + 1)
-    }
-    const handleDecrease =()=>{
-        setProCount(proCount - 1)
+    const [cartQuantity, setCartQuantity] = useState(1)
+    const cartState = useSelector(state => state.cart)
+    console.log(cartState);
+    const handleCartQuantity = (params) =>{
+            if(params === "add"){
+                setCartQuantity(cartQuantity + 1)
+            }
+            else{
+                cartQuantity > 0 && setCartQuantity(cartQuantity - 1)
+            }
     }
   return (
     <main className='cart-main-cont'>
@@ -30,7 +35,10 @@ const Cart = () => {
             {/* <div className='cart-body'> */}
                <div className='cart-top'>
                     <div className='top-btn'>
-                            <button className='left-btn'>CONTINUE SHOPPING</button>
+                            <Link to={"/products"}>
+                                <button className='left-btn'>CONTINUE SHOPPING
+                                </button>
+                            </Link>
                         </div>
                             <div className='top-texts'>
                                 <span>Your bag(2)</span>
@@ -42,68 +50,37 @@ const Cart = () => {
             {/* </div> */}
             <div className='cart-bottom'>
                 <div className='cart-info'>
-                   <div className='product'>
-                        <div className='product-details'>
-                            <img src={productImage} alt='product'/>
-                            <div className='details'>
-                                <span className='pro-name'><b>Product</b>: Denim Jeans Jumpsuit</span>
-                                <span className='pro-id'><b>ID</b>: 4567832678</span>
-                                <span className='pro-size'><b>Size</b>: M</span>
+
+                    {
+                     cartState.products.map(product => (
+                        <div className='product' key={product._id}>
+                            <div className='product-details'>
+                                <img src={product.img} alt='product'/>
+                                <div className='details'>
+                                    <span className='pro-name'><b>Product</b>: {product.title}</span>
+                                    <span className='pro-id'><b>Color</b>: {product.color}</span>
+                                    <span className='pro-size'><b>Size</b>: {product.size}</span>
+                                </div>
                             </div>
-                        </div>
-                        <div className='price-details'>
-                            <div className='product-amount-container'>
-                                <Add onClick={handleIncrease}/>
-                                    <div className='product-amount'><span>{proCount}</span></div>
-                                <Remove onClick={handleDecrease}/>
+                            <div className='price-details'>
+                                <div className='product-amount-container'>
+                                    <Add onClick={() => handleCartQuantity("add")}/>
+                                        <div className='product-amount'><span>{product.quantity}</span></div>
+                                    <Remove onClick={() => handleCartQuantity("rem")}/>
+                                </div>
+                                <div className='product-price'><span>£ {product.price * product.quantity}</span></div>
                             </div>
-                            <div className='product-price'><span>£ {proCount * 50}</span></div>
-                        </div>
                    </div>
+                     ))   
+                    }
                    <Hr />
-                   <div className='product'>
-                        <div className='product-details'>
-                            <img src={productImage} alt='product'/>
-                            <div className='details'>
-                                <span className='pro-name'><b>Product</b>: Denim Jeans Jumpsuit</span>
-                                <span className='pro-id'><b>ID</b>: 4567832678</span>
-                                <span className='pro-size'><b>Size</b>: M</span>
-                            </div>
-                        </div>
-                        <div className='price-details'>
-                            <div className='product-amount-container'>
-                                <Add onClick={handleIncrease}/>
-                                    <div className='product-amount'><span>{proCount}</span></div>
-                                <Remove onClick={handleDecrease}/>
-                            </div>
-                            <div className='product-price'><span>£ {proCount * 50}</span></div>
-                        </div>
-                   </div>
-                   <Hr />
-                   <div className='product'>
-                        <div className='product-details'>
-                            <img src={productImage} alt='product'/>
-                            <div className='details'>
-                                <span className='pro-name'><b>Product</b>: Denim Jeans Jumpsuit</span>
-                                <span className='pro-id'><b>ID</b>: 4567832678</span>
-                                <span className='pro-size'><b>Size</b>: M</span>
-                            </div>
-                        </div>
-                        <div className='price-details'>
-                            <div className='product-amount-container'>
-                                <Add onClick={handleIncrease}/>
-                                    <div className='product-amount'><span>{proCount}</span></div>
-                                <Remove onClick={handleDecrease}/>
-                            </div>
-                            <div className='product-price'><span>£ {proCount * 50}</span></div>
-                        </div>
-                   </div>
+                  
                 </div>
                 <div className='cart-summary'>
                     <h2>Order Summary</h2>
                     <div className='summary-item'>
                         <h4>Subtotal</h4>
-                        <span>£ 300</span>
+                        <span>£ {cartState.total}</span>
                     </div>
                     <div className='summary-item'>
                         <h4>Estimated Shipping</h4>
@@ -115,7 +92,7 @@ const Cart = () => {
                     </div>
                     <div className='summary-item'>
                         <h4 className='total'>Total</h4>
-                        <span>£ 300</span>
+                        <span>£ {cartState.total}</span>
                     </div>
                     <button className='checkout-btn'>CHECKOUT NOW</button>
                 </div>

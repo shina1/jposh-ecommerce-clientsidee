@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ReactComponent as CloseMenu } from "../../assets/icons/x.svg";
 import { ReactComponent as MenuIcon } from "../../assets/icons/menu.svg";
 import  jposhlogo  from "../../assets/images/logo.ico";
@@ -6,6 +6,8 @@ import "./resheader.css";
 import styledComponents from 'styled-components';
 import { ShoppingCart } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
+import { Badge } from '@material-ui/core';
+import { useSelector } from 'react-redux';
 
 const Logo = styledComponents.img``
 
@@ -13,6 +15,14 @@ const ResponsiveHeader = () => {
   const [click, setClick] = useState(false);
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
+  const cart = useSelector(state => state.cart)
+
+  const [cartQuantity, setCartQuantity] = useState(0)
+  useEffect(() => {
+    if(cart){
+      setCartQuantity(cart.quantity)
+    }
+  })
   return (
       <div>
     <div className='header-top'>
@@ -43,9 +53,11 @@ const ResponsiveHeader = () => {
             <Link to={"/login"}>SIGN-IN</Link>
           </li>
           <li className="option mobile-option">
-            <a href="/cart" className="cart-icon">
-              <ShoppingCart />
-            </a>
+            <Link to={"/cart"} className="cart-icon">
+                <Badge badgeContent={cartQuantity} color="primary">
+                    <ShoppingCart />
+                </Badge>
+            </Link>
           </li>
         </ul>
       </div>
@@ -59,9 +71,11 @@ const ResponsiveHeader = () => {
           </a>
         </li> */}
          <li>
-          <a href="/cart" className="cart-bgsc-btn">
-          <ShoppingCart />
-          </a>
+           <Link to={"/cart"} className="cart-bgsc-btn">
+              <Badge badgeContent={cartQuantity} color="primary">
+                  <ShoppingCart />
+              </Badge>
+           </Link>
       </li>
        
       </ul>

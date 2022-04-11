@@ -178,7 +178,6 @@ main{
 
 @media screen and (max-width: 560px) {
     .cart-main-cont{
-        background-color: red;
         width: 100%;
     }
 }

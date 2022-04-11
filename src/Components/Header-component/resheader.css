@@ -52,6 +52,13 @@
   .option :hover {
     color: #000;
   }
+/* cart badge styling */
+.MuiBadge-colorPrimary {
+  color: #fff;
+  /* background-color: rgba(191, 149, 33, 0.95) !important; */
+  background-color: rgba(18, 18, 18, 0.85) !important;
+}
+
   .signin-up {
     display: flex;
     padding: 0px 5px;
