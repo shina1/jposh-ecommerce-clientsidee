@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { notification, Space } from 'antd';
 import Footer from '../../Components/Footer'
 import ResponsiveHeader from '../../Components/Header-component/ResponsiveHeader'
 import Newsletter from '../../Components/Newsletter'
@@ -40,10 +41,19 @@ const SingleProduct = () => {
             quantity > 1 && setQuantity(quantity - 1)
         }
     }
-    const handleAddToCart = () => {
+    const openNotificationWithIcon = (type, placement) => {
         // update our cart
         dispatch(addProduct({...product, quantity, color, size}))
+        // open notification
+        notification[type]({
+            message: 'SUCCCESS',
+            duration: 2,
+            description:
+              'Item added to cart. Proceed to payment or continue shopping!',
+          });
+          
     }
+
   return (
     <div className='single-product-container'>
         <ResponsiveHeader/>
@@ -85,7 +95,7 @@ const SingleProduct = () => {
                         <span className='amount'>{quantity}</span>
                         <Add onClick={()=>handleQuantity("inc")}/>
                     </div>
-                    <button className='add-to-cart' onClick={handleAddToCart}>ADD TO CART</button>
+                    <button className='add-to-cart' onClick={() => openNotificationWithIcon('success', 'top')}>ADD TO CART</button>
                 </div>
             </div>
         </section>

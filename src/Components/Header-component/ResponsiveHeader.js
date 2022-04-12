@@ -16,13 +16,15 @@ const ResponsiveHeader = () => {
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
   const cart = useSelector(state => state.cart)
-
+  const user = useSelector((state) => state.user.currentUser)
   const [cartQuantity, setCartQuantity] = useState(0)
   useEffect(() => {
     if(cart){
       setCartQuantity(cart.quantity)
     }
   })
+
+ 
   return (
       <div>
     <div className='header-top'>
@@ -48,10 +50,11 @@ const ResponsiveHeader = () => {
           <li className="option" onClick={closeMobileMenu}>
             <Link to={"/contact"}>CONTACT</Link>
           </li>
-          <li className="option mobile-option" onClick={closeMobileMenu}>
-            {/* <a href="/login"></a> */}
+          {
+            !user && <li className="option mobile-option" onClick={closeMobileMenu}>
             <Link to={"/login"}>SIGN-IN</Link>
           </li>
+          }
           <li className="option mobile-option">
             <Link to={"/cart"} className="cart-icon">
                 <Badge badgeContent={cartQuantity} color="primary">
@@ -62,9 +65,12 @@ const ResponsiveHeader = () => {
         </ul>
       </div>
       <ul className="signin-up">
-        <li className="sign-in" onClick={closeMobileMenu}>
-        <Link to={"/login"}>SIGN-IN</Link>
-        </li>
+        {
+          !user && <li className="sign-in" onClick={closeMobileMenu}>
+          <Link to={"/login"}>SIGN-IN</Link>
+          </li>
+        }
+        
         {/* <li onClick={closeMobileMenu}>
           <a href="/cart" className="cart-bgsc-btn">
           <ShoppingCart />
