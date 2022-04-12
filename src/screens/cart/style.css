@@ -51,6 +51,9 @@ main{
     background: #C09621;
     color: #fff;
 }
+.right-btn:disabled{
+    cursor: not-allowed;
+}
 .right-btn:hover{
     background: transparent;
     color: #C09621;
@@ -131,6 +134,9 @@ main{
     cursor: pointer;
     margin: 10px 0;
     width: 100%;
+}
+.checkout-btn:disabled{
+    cursor: not-allowed;
 }
 .checkout-btn:hover{
     background: transparent;
