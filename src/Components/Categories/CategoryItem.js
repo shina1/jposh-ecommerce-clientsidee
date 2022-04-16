@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import { listAllProducts } from '../../actions/productActions'
 import { devices } from '../../assets/screenSizes'
 
 const Container = styled.div`
@@ -74,13 +78,38 @@ cursor: pointer;
 opacity: 0.85;
 `
 const CategoryItem = ({category}) => {
+  // const [filteredProducts, setFilteredProducts] = useState([])
+  const dispatch = useDispatch()
+  const productList = useSelector((state) => state.productList)
+
+  const {loading, products, error} = productList
+  
+  useEffect(() => {
+    dispatch(listAllProducts())
+  }, [dispatch])
+
+  const getCategoryNumber = () => {
+    let catNo = 0
+    products.forEach((product) => {
+      if(product.category.toLowerCase() === category.cat.toLowerCase()){
+        catNo = product.category.length
+      }
+    })
+    return catNo
+  }
   return (
     <Container>
+        {
+          loading &&  
+          <Box sx={{ display: 'flex' }}>
+          <CircularProgress />
+        </Box>
+        }
             <Link to={`/products/${category.cat}`}>
               <Image src={category.img} alt='categories'/>
               <InfoCont>
                   <Title>{category.cat}</Title>
-                  <ItemCat>{category.no}</ItemCat>
+                  <ItemCat>{getCategoryNumber()}</ItemCat>
                   <Button>SHOP NOW</Button>
               </InfoCont>
             </Link>

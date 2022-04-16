@@ -7,6 +7,8 @@ import Footer from '../../Components/Footer/index.js'
 
 import './style.css'
 import FilteredProductsDisp from '../../Components/Product/filteredProductDisplay'
+import { listAllProducts } from '../../actions/productActions'
+import { useDispatch, useSelector } from 'react-redux'
 
 
 const ProductList = () => {
@@ -14,6 +16,7 @@ const ProductList = () => {
   const category = location.pathname.split("/")[2];
   const [filters, setFilter] = useState({})
   const [sort, setSort] = useState("Newest")
+
   const handleFilterChange = (e) => {
     const value = e.target.value;
     const name = e.target.name;

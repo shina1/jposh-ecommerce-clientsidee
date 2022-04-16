@@ -1,7 +1,9 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import styledComponents from 'styled-components'
 import PopularProducts from '.'
+import { listPorpularProducts } from '../../actions/productActions'
 // import { popularProducts } from '../../data'
 import Divider from '../Divider'
 import './style.css'
@@ -13,22 +15,14 @@ margin:100px auto;
 
 
 const Products = ({category}) => {
-  const [products, setProducts] = useState([])
+  const dispatch = useDispatch()
+  const porpularProducts = useSelector((state) => state.porpularProducts)
+  
+  const {loading, eror, products } = porpularProducts
 
   useEffect(() => {
-    const getProducts = async()=> {
-      try {
-        const res = await axios.get("http://localhost:2600/api/v1/products/porpular" )
-        setProducts(res.data)
-      } catch (error) {
-        throw new Error(error)
-      }
-    }
-
-    getProducts()
-  }, [category])
-
- 
+    dispatch(listPorpularProducts())
+  }, [dispatch])
 
   return (
     <Box>
