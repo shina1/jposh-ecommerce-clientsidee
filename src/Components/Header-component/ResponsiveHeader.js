@@ -7,7 +7,11 @@ import styledComponents from 'styled-components';
 import { ShoppingCart } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 import { Badge } from '@material-ui/core';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { Select } from 'antd';
+import { logout } from "../../actions/userActions"
+
+const { Option } = Select;
 
 const Logo = styledComponents.img``
 
@@ -16,14 +20,19 @@ const ResponsiveHeader = () => {
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
   const cart = useSelector(state => state.cart)
-  const user = useSelector((state) => state.user.currentUser)
+  const user = useSelector((state) => state.userLogin)
+  const {userInfo} = user
+  const dispatch = useDispatch()
+
   const [cartQuantity, setCartQuantity] = useState(0)
   useEffect(() => {
     if(cart){
-      setCartQuantity(cart.quantity)
+      setCartQuantity(cart.cartItems.length)
     }
-  })
-
+  }, [cart])
+  const logoutHandler = () => {
+    dispatch(logout())
+  }
  
   return (
       <div>
@@ -51,9 +60,7 @@ const ResponsiveHeader = () => {
             <Link to={"/contact"}>CONTACT</Link>
           </li>
           {
-            !user && <li className="option mobile-option" onClick={closeMobileMenu}>
-            <Link to={"/login"}>SIGN-IN</Link>
-          </li>
+           
           }
           <li className="option mobile-option">
             <Link to={"/cart"} className="cart-icon">
@@ -66,16 +73,32 @@ const ResponsiveHeader = () => {
       </div>
       <ul className="signin-up">
         {
-          !user && <li className="sign-in" onClick={closeMobileMenu}>
+            userInfo !== null && (
+              userInfo.isAdmin === true ? ( <li>
+                <Select defaultValue={userInfo.name} style={{ width: 100 }} >
+                  <Option> <Link to='/admin-home'>Admin</Link></Option>
+                  <Option>Profile</Option>
+                  <Option><button onClick={logoutHandler}>Logout</button></Option>
+                </Select>
+             </li>) :
+              <li className="sign-in">
+                <button onClick={logoutHandler} to=''>Logout</button>
+              </li>
+            )
+        }
+        {
+         !userInfo && (
+          <li className="sign-in" onClick={closeMobileMenu}>
           <Link to={"/login"}>SIGN-IN</Link>
           </li>
+         ) 
         }
+        {/* {
+          user.userInfo.isAdmin && (
+          
+          ) 
+        } */}
         
-        {/* <li onClick={closeMobileMenu}>
-          <a href="/cart" className="cart-bgsc-btn">
-          <ShoppingCart />
-          </a>
-        </li> */}
          <li>
            <Link to={"/cart"} className="cart-bgsc-btn">
               <Badge badgeContent={cartQuantity} color="primary">

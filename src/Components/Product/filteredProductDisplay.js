@@ -2,7 +2,9 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import styledComponents from 'styled-components'
 import FilteredProducts from './filteredProducts'
+import { listProductByCategory } from '../../actions/productActions'
 import './style.css'
+import { useDispatch, useSelector } from 'react-redux'
 
 
 const Box = styledComponents.div`
@@ -11,21 +13,17 @@ margin:100px auto;
 
 
 const FilteredProductsDisp = ({category, filters, sort}) => {
-  const [products, setProducts] = useState([])
+  // const [products, setProducts] = useState([])
   const [filteredProducts, setFilteredProducts] = useState([])
+  const dispatch = useDispatch()
+  const productCategory = useSelector((state) => state.productCategory)
 
+  const {loading, products, error} = productCategory
+  
   useEffect(() => {
-    const getProducts = async()=> {
-      try {
-        const res = await axios.get(category ? `http://localhost:2600/api/v1/products?category=${category.toLowerCase()}` : "http://localhost:2600/api/v1/products" )
-        setProducts(res.data)
-      } catch (error) {
-        throw new Error(error)
-      }
-    }
-
-    getProducts()
-  }, [category])
+    dispatch(listProductByCategory(category))
+  }, [dispatch, category])
+ 
 
   useEffect(() => {
     category && setFilteredProducts(

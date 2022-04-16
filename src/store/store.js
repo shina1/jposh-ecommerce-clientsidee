@@ -15,10 +15,12 @@ import {
   } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
+// persistent object that will be stored in the localstorage
 const persistConfig = {
     key: 'root',
     version: 1,
     storage,
+    blacklist: ['navigation']
   }
 
   const rootReducer = combineReducers({cart: cartReducer, user: userReducer})

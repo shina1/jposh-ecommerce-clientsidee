@@ -9,31 +9,27 @@ import './style.css'
 import { Add, Remove } from '@material-ui/icons'
 import { useLocation } from 'react-router-dom'
 import { publicRequest } from '../../utils/requestMethods'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addProduct } from '../../store/cartStore'
+import { listProductDetails } from '../../actions/productActions';
+import { addToCart } from '../../actions/cartAction';
 
 const SingleProduct = () => {
     const location = useLocation()
     const id = location.pathname.split("/")[2];
-    const [product, setProduct] = useState({})
+    
+    
     const [quantity, setQuantity] = useState(1)
     const [color, setColor] = useState("")
     const [size, setSize] = useState("")
     const dispatch = useDispatch()
+    const  productDetails = useSelector((state) => state.productDetails)
+    
+    const {loading, product, error} = productDetails
     useEffect(() => {
-        const getProductById = async ()=> {
-           try {
-                const res = await publicRequest.get(`/products/find/${id}`)
-                setProduct(res.data) 
-           } catch (error) {
-              throw new Error(error)
-           }
-        }
-
-        getProductById()
-    }, [id])
-
-
+        dispatch(listProductDetails(id))
+    }, [dispatch])
+    
     const handleQuantity = (param) => {
         if(param === "inc"){
             setQuantity(quantity + 1)
@@ -41,17 +37,17 @@ const SingleProduct = () => {
             quantity > 1 && setQuantity(quantity - 1)
         }
     }
+
     const openNotificationWithIcon = (type, placement) => {
         // update our cart
-        dispatch(addProduct({...product, quantity, color, size}))
+        dispatch(addToCart(id, quantity, color, size))
         // open notification
         notification[type]({
             message: 'SUCCCESS',
             duration: 2,
             description:
               'Item added to cart. Proceed to payment or continue shopping!',
-          });
-          
+          });   
     }
 
   return (
@@ -60,7 +56,17 @@ const SingleProduct = () => {
         <section className='single-product-inner-container'>
             <div className='image-cont'>
                 <img src={product.img} alt='single product'/>
+                {
+                    product.video && 
+                    <video controls autoPlay={true} muted playsInline >
+                    <source src={product.video} />
+                </video>
+
+                }
             </div>
+            {/* <div className='video-box'>
+               
+            </div> */}
             <div className='product-desc'>
                 <h3>{product.title}</h3>
                 <p>
@@ -95,7 +101,7 @@ const SingleProduct = () => {
                         <span className='amount'>{quantity}</span>
                         <Add onClick={()=>handleQuantity("inc")}/>
                     </div>
-                    <button className='add-to-cart' onClick={() => openNotificationWithIcon('success', 'top')}>ADD TO CART</button>
+                    <button className='add-to-cart' onClick={() => openNotificationWithIcon('success', 'top')} >ADD TO CART</button>
                 </div>
             </div>
         </section>

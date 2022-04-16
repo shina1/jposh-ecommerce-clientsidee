@@ -8,7 +8,6 @@ import './style.css'
 import AllProductsComponent from '../../Components/Product/allProducts'
 
 
-
 const AllProductList = () => {
   const location = useLocation()
   const category = location.pathname.split("/")[2];
