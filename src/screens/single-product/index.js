@@ -24,6 +24,9 @@ const SingleProduct = () => {
     const [size, setSize] = useState("")
     const dispatch = useDispatch()
     const  productDetails = useSelector((state) => state.productDetails)
+    const cart = useSelector((state) => state.cart)
+
+    console.log(cart.cartItems);
     
     const {loading, product, error} = productDetails
     useEffect(() => {
@@ -39,7 +42,7 @@ const SingleProduct = () => {
     }
 
     const openNotificationWithIcon = (type, placement) => {
-        // update our cart
+      
         dispatch(addToCart(id, quantity, color, size))
         // open notification
         notification[type]({

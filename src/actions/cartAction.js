@@ -4,12 +4,9 @@ import { CART_ADD_ITEM, CART_REMOVE_ITEM, CART_SAVE_PAYMENT_METHOD, CART_SAVE_SH
 
 
 export const addToCart = (id, qty, color, size) => async(dispatch, getState) => {
-  console.log(id);
+ 
   const {data} = await axios.get(`http://localhost:2600/api/v1/products/find/${id}`)
   
-
-
-  console.log('data', data);
     dispatch({
         type: CART_ADD_ITEM,
         payload: {

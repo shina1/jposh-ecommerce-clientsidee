@@ -37,7 +37,7 @@ const ResponsiveHeader = () => {
   return (
       <div>
     <div className='header-top'>
-    <p>Free U.K. Shipping & Free Worldwide shipping on orders over £199</p>
+    <p>Free U.K. Shipping on orders over £199</p>
     </div>
     <div className="header">
         <div className="logo-container">

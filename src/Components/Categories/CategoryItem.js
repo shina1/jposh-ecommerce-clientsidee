@@ -90,7 +90,7 @@ const CategoryItem = ({category}) => {
 
   const getCategoryNumber = () => {
     let catNo = 0
-    products.forEach((product) => {
+    products && products.forEach((product) => {
       if(product.category.toLowerCase() === category.cat.toLowerCase()){
         catNo = product.category.length
       }

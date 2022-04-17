@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Modal } from 'antd';
 import Footer from '../../Components/Footer'
 import ResponsiveHeader from '../../Components/Header-component/ResponsiveHeader'
-import { Add, Remove } from '@material-ui/icons'
+import { Add, Remove, Delete } from '@material-ui/icons'
 import styledComponents from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
@@ -11,6 +11,7 @@ import StripeCheckout from 'react-stripe-checkout';
 import './style.css'
 import logo from '../../assets/images/logo.ico'
 import { userRequest } from '../../utils/requestMethods.js';
+import { removeFromCart } from '../../actions/cartAction';
 
 const Hr = styledComponents.hr`
 background-color: #eee;
@@ -62,6 +63,10 @@ const Cart = () => {
             navigate('/login')
         )
     }
+    
+    const removeFromCartHandler = (id) => {
+        dispatch(removeFromCart(id))
+      }
   return (
     <main className='cart-main-cont'>
         <ResponsiveHeader />
@@ -91,6 +96,7 @@ const Cart = () => {
 
                     {
                      cart.cartItems.map(product => (
+                         
                         <div className='product' key={product + Math.random()}>
                             <div className='product-details'>
                                 <img src={product.image} alt='product'/>
@@ -105,6 +111,7 @@ const Cart = () => {
                                     <Add onClick={() => handleCartQuantity("add")}/>
                                         <div className='product-amount'><span>{product.qty}</span></div>
                                     <Remove onClick={() => handleCartQuantity("rem")}/>
+                                    <Delete onClick={()=> removeFromCartHandler(product.product)}/>
                                 </div>
                                 <div className='product-price'><span>£ {product.price * product.qty}</span></div>
                             </div>

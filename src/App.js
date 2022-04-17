@@ -16,6 +16,8 @@ import UserListDash from './adminDashboard/pages/userList/UserList'
 import NewProduct from './adminDashboard/pages/newProduct/NewProduct'
 import DashProduct from './adminDashboard/pages/product/Product'
 import DashProductList from './adminDashboard/pages/productList/ProductList'
+import Shipping from './screens/shippingScreen'
+import PaymentMethod from './screens/paymentMethod'
 
 const App = () => {
   // const user = useSelector((state) => state.userLogin)
@@ -40,6 +42,8 @@ const App = () => {
         <Route  path="/cart" element={ <Cart /> }> </Route>
         <Route  path="/register" element={<Register />}/>
         <Route  path="/login"  element={ <Login/>} />
+        <Route path='/shipping' element={<Shipping />} />
+        <Route path='/payment' element={<PaymentMethod />} />
       </Routes>
     </Router>
     // <>
