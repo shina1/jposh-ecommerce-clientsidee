@@ -4,6 +4,7 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import { userLoginReducer , userRegisterReduceder} from "./reducer/userReducers";
 import { cartReducer } from "./reducer/cartReducers";
 import { listPorpularProductsReducer, listProductByCategoryReducer, productCreateReducer, productDeleteReducer, productDetailsReducer, productListReducer, productReviewCreateReducer, productTopRatedReducer, productUpdateReducer } from "./reducer/productReducers";
+import {orderCreateReducer, orderDeliverReducer, orderDetailsReducer, orderListMyReducer, orderListReducer, orderPayReducer} from './reducer/orderReducer'
 
 
 const reducer = combineReducers({
@@ -18,7 +19,13 @@ const reducer = combineReducers({
     productReview: productReviewCreateReducer,
     productTopRated: productTopRatedReducer,
     porpularProducts: listPorpularProductsReducer,
-    productCategory: listProductByCategoryReducer
+    productCategory: listProductByCategoryReducer,
+    orderCreate: orderCreateReducer,
+    orderDetails: orderDetailsReducer,
+    orderPay: orderPayReducer,
+    orderDelivery: orderDeliverReducer,
+    orderListMy: orderListMyReducer,
+    orderList: orderListReducer
 })
 
 const cartItemsFromStorage = localStorage.getItem('cartItems')
@@ -30,12 +37,14 @@ const cartItemsFromStorage = localStorage.getItem('cartItems')
   : {}
 
   const userInfoFromLocalStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
-
+  const paymentMethodFromLS = localStorage.getItem('paymentMethod') ? JSON.parse(localStorage.getItem('paymentMethod')) : null
+   console.log(paymentMethodFromLS)
 
 const initialState = {
     cart: {
         cartItems: cartItemsFromStorage,
         shippingAddress: shippingAddressFromStorage,
+        paymentMethod : paymentMethodFromLS,
       },
     userLogin: { userInfo: userInfoFromLocalStorage},
 }

@@ -47,6 +47,7 @@ export const removeFromCart = (id) => (dispatch, getState) => {
   }
   
   export const savePaymentMethod = (data) => (dispatch) => {
+    console.log('cart data form action',data)
     dispatch({
       type: CART_SAVE_PAYMENT_METHOD,
       payload: data,

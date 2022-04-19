@@ -47,7 +47,7 @@ const AllProductsComponent = ({category, filters, sort}) => {
             loading && <Spin size='large' style={{color: "red", textAlign: "center !mportant"}}/>
           }
           {
-            products.map(product => (
+            products && products.map(product => (
               <PopularProducts product={product} key={product._id} filters={filters} sort={sort} />
             ))  
           }

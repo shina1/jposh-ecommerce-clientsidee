@@ -29,7 +29,7 @@ const Products = ({category}) => {
       <Divider section={'PORPULAR PRODUCTS'} />
         <div className='productContainer'>
           {
-            products.map(product => (
+           products && products.map(product => (
               <PopularProducts product={product} key={product._id} />
             ))  
           }

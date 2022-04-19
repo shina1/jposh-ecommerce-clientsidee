@@ -18,6 +18,8 @@ import DashProduct from './adminDashboard/pages/product/Product'
 import DashProductList from './adminDashboard/pages/productList/ProductList'
 import Shipping from './screens/shippingScreen'
 import PaymentMethod from './screens/paymentMethod'
+import PlaceOrderScreen from './screens/placeOrderScreen'
+import OrderScreen from './screens/orderScreen'
 
 const App = () => {
   // const user = useSelector((state) => state.userLogin)
@@ -44,6 +46,8 @@ const App = () => {
         <Route  path="/login"  element={ <Login/>} />
         <Route path='/shipping' element={<Shipping />} />
         <Route path='/payment' element={<PaymentMethod />} />
+        <Route path='/placeoder' element={<PlaceOrderScreen />} />
+        <Route path='/order/:id' element={<OrderScreen />} />
       </Routes>
     </Router>
     // <>
