@@ -15,7 +15,6 @@ const PlaceOrderScreen = () => {
     const orderCreate = useSelector((state) => state.orderCreate)
     const user = useSelector((state) => state.userLogin)
     const cart = useSelector((state) => state.cart)
-console.log(cart);
     
     const userDets = user.userInfo
 
@@ -29,7 +28,7 @@ console.log(cart);
     return (Math.round(num * 100) / 100).toFixed(2)
   }
 cart.itemsPrice = addDecimals(
-    cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
+    cart.cartItems.reduce((acc, item) => acc + item.total, 0)
 )
 cart.itemsNumber = cart.cartItems.length
 cart.totalPrice = (

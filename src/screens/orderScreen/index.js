@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { createOrder, getOrderDetails,  } from '../../actions/orderActions'
+import { createOrder, deliverOrder, getOrderDetails, payOrder,  } from '../../actions/orderActions'
 import ResponsiveHeader from '../../Components/Header-component/ResponsiveHeader'
 import { ORDER_CREATE_RESET, ORDER_DELIVER_RESET, ORDER_PAY_RESET } from '../../constants/orderConstants'
 import { USER_DETAILS_RESET } from '../../constants/userConstants'
@@ -11,7 +11,8 @@ import "./style.css"
 // import { CardElement, Elements, useElements, useStripe } from '@stripe/react-stripe-js'
 import axios from 'axios'
 import StripeCheckout from 'react-stripe-checkout'
-const KEY = process.env.REACT_APP_JPOSH_STRIPE_TEST_KEY
+import OpenNotificationWithIcon from '../../Components/Notification'
+const KEY = process.env.REACT_APP_JPOSH_STRIPE_KEY
 
 const OrderScreen = () => {
     const dispatch = useDispatch();
@@ -22,18 +23,12 @@ const OrderScreen = () => {
     const orderCreate = useSelector((state) => state.orderCreate);
     const user = useSelector((state) => state.userLogin);
     const cart = useSelector((state) => state.cart);
+    const orderPay = useSelector((state) => state.orderPay)
+    const orderDeliver = useSelector((state) => state.orderDelivery)
    const {loading, order, error} = useSelector((state) => state.orderDetails);
  
     
     const userDets = user.userInfo
-
-    useEffect(() => {
-        if(!order || order._id !== id){
-            dispatch({type: ORDER_PAY_RESET});
-            dispatch({type: ORDER_DELIVER_RESET});
-            dispatch(getOrderDetails(id))
-        }
-    }, [dispatch, id])
 
 // decimal converter
    const addDecimals = (num) => {
@@ -64,27 +59,34 @@ const onToken = (token) => {
         const headers = {
             "Content-Type" : "application/json"
         }
-        console.log(stripeToken)
         if(stripeToken){
              await axios.post(`http://localhost:2600/api/v1/checkout/payment`, {headers, stripeToken, amount: order.totalPrice, product: order.orderItems})
         .then(response => {
-            console.log('response',response)
             const {status} = response
+            if(response.status === 200){
+               dispatch(payOrder(id, response))
+            }
         })
         .catch(err => {
-            console.log(err);
             throw new Error(err)}
             )
         }
        
       };
-      if(!order || order._id !== orderId)
-      placeOrderHandler()
-  }, [stripeToken, order])
-      
+    if(!order || order._id !== id){
+        dispatch({type: ORDER_PAY_RESET});
+        dispatch({type: ORDER_DELIVER_RESET});
+        dispatch(getOrderDetails(id))
+    }else if(!order.isPaid){
+        placeOrderHandler() 
+    }  
+  }, [stripeToken, order, dispatch, id])
 
 
-console.log('the order',order);
+   const deliverHandler = () => {
+       dispatch(deliverOrder(order))
+   }   
+
   return (
         <main className='palce-order-container'>
       <ResponsiveHeader />
@@ -178,13 +180,15 @@ console.log('the order',order);
                                  token={onToken}
                                  stripeKey={KEY}
                             >
-                                    <button className='placeorder-btn' >
+                                    <button className='placeorder-btn'>
                                         Make Payment
                                     </button>
                             </StripeCheckout>
                     </div>
                     :
-                    <h3>You have no order</h3>
+                    <button className='placeorder-btn' onClick={deliverHandler}>
+                        Mark as delivered
+                    </button>
                 }
                 
             </div>

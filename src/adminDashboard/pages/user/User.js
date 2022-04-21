@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   CalendarToday,
   LocationSearching,
@@ -7,12 +7,25 @@ import {
   PhoneAndroid,
   Publish,
 } from "@material-ui/icons";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./user.css";
 import Topbar from "../../components/topbar/Topbar";
 import Sidebar from "../../components/sidebar/Sidebar";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserDetails, listUsers } from "../../../actions/userActions";
+import {format} from "timeago.js"
 
 const UserProfileDash = () => {
+  const params = useParams()
+  const userId = params.userId
+  const dispatch = useDispatch()
+  const userDetials = useSelector((state) => state.userDetials)
+  const {loading, user} = userDetials
+  
+
+  useEffect(() => {
+    dispatch(getUserDetails(userId))
+  }, [dispatch])
   return (
    <div>
      <Topbar />
@@ -20,50 +33,37 @@ const UserProfileDash = () => {
      <Sidebar />
      <div className="user">
       <div className="userTitleContainer">
-        <h1 className="userTitle">Edit User</h1>
-        <Link to="/newUser">
+        <h1 className="userTitle">View User Details</h1>
+        {/* <Link to="/newUser">
           <button className="userAddButton">Create</button>
-        </Link>
+        </Link> */}
       </div>
       <div className="userContainer">
         <div className="userShow">
           <div className="userShowTop">
             <img
-              src="https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+              src="https://icons-for-free.com/iconfiles/png/512/avatar+people+profile+user+icon-1320185001671922416.png"
               alt=""
               className="userShowImg"
             />
             <div className="userShowTopTitle">
-              <span className="userShowUsername">Anna Becker</span>
-              <span className="userShowUserTitle">Software Engineer</span>
+              <span className="userShowUsername">{user.name}</span>
             </div>
           </div>
           <div className="userShowBottom">
-            <span className="userShowTitle">Account Details</span>
+            <span className="userShowTitle">Contact Details</span>
             <div className="userShowInfo">
               <PermIdentity className="userShowIcon" />
-              <span className="userShowInfoTitle">annabeck99</span>
+              <span className="userShowInfoTitle">{user.email}</span>
             </div>
             <div className="userShowInfo">
               <CalendarToday className="userShowIcon" />
-              <span className="userShowInfoTitle">10.12.1999</span>
+              <span className="userShowInfoTitle"></span>
             </div>
-            <span className="userShowTitle">Contact Details</span>
-            <div className="userShowInfo">
-              <PhoneAndroid className="userShowIcon" />
-              <span className="userShowInfoTitle">+1 123 456 67</span>
-            </div>
-            <div className="userShowInfo">
-              <MailOutline className="userShowIcon" />
-              <span className="userShowInfoTitle">annabeck99@gmail.com</span>
-            </div>
-            <div className="userShowInfo">
-              <LocationSearching className="userShowIcon" />
-              <span className="userShowInfoTitle">New York | USA</span>
-            </div>
+            <span className="userShowTitle">{format(user.createdAt)}</span>
           </div>
         </div>
-        <div className="userUpdate">
+        {/* <div className="userUpdate">
           <span className="userUpdateTitle">Edit</span>
           <form className="userUpdateForm">
             <div className="userUpdateLeft">
@@ -123,7 +123,7 @@ const UserProfileDash = () => {
               <button className="userUpdateButton">Update</button>
             </div>
           </form>
-        </div>
+        </div> */}
       </div>
     </div>
      </main>

@@ -14,7 +14,7 @@ const Categories = () => {
   return (
     <Box>
       <Divider section={'CATEGORIES'}/>
-      <div className='category-container'>
+      <div className='category-container' id='cat'>
         {
             categories.map(category => (
                 <CategoryItem  category={category} key={category.id}/>

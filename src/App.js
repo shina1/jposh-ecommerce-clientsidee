@@ -20,6 +20,7 @@ import Shipping from './screens/shippingScreen'
 import PaymentMethod from './screens/paymentMethod'
 import PlaceOrderScreen from './screens/placeOrderScreen'
 import OrderScreen from './screens/orderScreen'
+import DashOrderList from './adminDashboard/pages/orderList/orderList'
 
 const App = () => {
   // const user = useSelector((state) => state.userLogin)
@@ -35,6 +36,7 @@ const App = () => {
         <Route path='/newproduct' element={<NewProduct  />}/>
         <Route path='/dash-products' element={<DashProductList />} />
         <Route path='/dash-product/:productId' element={<DashProduct />}/>
+        <Route path='/dash-orders' element={<DashOrderList />} />
         {/* admin dashboard Routes end */}
         <Route exact path="/" element={<Home/>}/>
         <Route path='/success' element={<Success />} />

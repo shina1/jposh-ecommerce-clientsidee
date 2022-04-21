@@ -1,4 +1,4 @@
-import { ORDER_CREATE_FAIL, ORDER_CREATE_REQUEST, ORDER_CREATE_RESET, ORDER_CREATE_SUCCESS, ORDER_DELIVER_FAIL, ORDER_DELIVER_REQUEST, ORDER_DELIVER_RESET, ORDER_DELIVER_SUCCESS, ORDER_DETAILS_FAIL, ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS, ORDER_LIST_FAIL, ORDER_LIST_MY_FAIL, ORDER_LIST_MY_REQUEST, ORDER_LIST_MY_RESET, ORDER_LIST_MY_SUCCESS, ORDER_LIST_REQUEST, ORDER_LIST_SUCCESS, ORDER_PAY_FAIL, ORDER_PAY_REQUEST, ORDER_PAY_RESET, ORDER_PAY_SUCCESS } from "../constants/orderConstants"
+import { ORDER_ANALYSIS_FAIL, ORDER_ANALYSIS_REQUEST, ORDER_ANALYSIS_SUCCESS, ORDER_CREATE_FAIL, ORDER_CREATE_REQUEST, ORDER_CREATE_RESET, ORDER_CREATE_SUCCESS, ORDER_DELIVER_FAIL, ORDER_DELIVER_REQUEST, ORDER_DELIVER_RESET, ORDER_DELIVER_SUCCESS, ORDER_DETAILS_FAIL, ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS, ORDER_LIST_FAIL, ORDER_LIST_MY_FAIL, ORDER_LIST_MY_REQUEST, ORDER_LIST_MY_RESET, ORDER_LIST_MY_SUCCESS, ORDER_LIST_NEW_FAIL, ORDER_LIST_NEW_REQUEST, ORDER_LIST_NEW_SUCCESS, ORDER_LIST_REQUEST, ORDER_LIST_SUCCESS, ORDER_PAY_FAIL, ORDER_PAY_REQUEST, ORDER_PAY_RESET, ORDER_PAY_SUCCESS } from "../constants/orderConstants"
 
   
   export const orderCreateReducer = (state = {}, action) => {
@@ -138,5 +138,45 @@ import { ORDER_CREATE_FAIL, ORDER_CREATE_REQUEST, ORDER_CREATE_RESET, ORDER_CREA
       default:
         return state
     }
+  }
+
+  export const orderListNewReducer = (state = { orders: [] }, action) => {
+    switch (action.type) {
+      case ORDER_LIST_NEW_REQUEST:
+        return {
+          loading: true,
+        }
+      case ORDER_LIST_NEW_SUCCESS:
+        return {
+          loading: false,
+          orders: action.payload,
+        }
+      case ORDER_LIST_NEW_FAIL:
+        return {
+          loading: false,
+          error: action.payload,
+        }
+      default:
+        return state
+    }
+  }
+
+  export const orderAnalysisReducer = (state = {order: []}, action) => {
+      switch(action.type){
+        case ORDER_ANALYSIS_REQUEST:
+          return {loading: true}
+        case ORDER_ANALYSIS_SUCCESS: 
+            return {
+              loading: false,
+              analysis: action.payload
+            }
+        case ORDER_ANALYSIS_FAIL:
+          return {
+            loading: false,
+            error: action.payload
+          }
+        default:
+          return state
+      }
   }
   

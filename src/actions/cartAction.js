@@ -21,7 +21,8 @@ export const addToCart = (id, qty, color, size) => async(dispatch, getState) => 
             countInStock: data.countInStock,
             reviews: data.reviews,
             qty,
-            total: data.price * qty
+            vat: data.price * qty * 0.2,
+            total: data.price * qty + data.price * qty * 0.2,
         }
     })
 
@@ -47,7 +48,6 @@ export const removeFromCart = (id) => (dispatch, getState) => {
   }
   
   export const savePaymentMethod = (data) => (dispatch) => {
-    console.log('cart data form action',data)
     dispatch({
       type: CART_SAVE_PAYMENT_METHOD,
       payload: data,

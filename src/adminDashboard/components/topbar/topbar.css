@@ -4,15 +4,27 @@
   background-color: white;
   position: sticky;
   top: 0;
-  z-index: 999;
+  z-index: 1;
+ 
 }
-
+.productForm {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+.productTopRight{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
 .topbarWrapper {
   height: 100%;
+  width: 100%;
   padding: 0px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex: 1;
 }
 
 .logo {
@@ -54,4 +66,25 @@
     height: 40px;
     border-radius: 50%;
     cursor: pointer;
+}
+
+@media screen and (max-width: 320px) {
+  .topbar {
+    width: 100%;
+    height: 50px;
+    
+  }
+  .topbarWrapper{
+    width: 100% !important;
+  }
+  .productForm {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.productTopRight{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
 }
