@@ -1,40 +1,37 @@
-import React, { useEffect } from "react";
-import "./productList.css";
+import React, { useEffect, useState } from "react";
+import "./orderList.css";
 import { DataGrid } from "@mui/x-data-grid";
 import { DeleteOutline } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import Topbar  from "../../components/topbar/Topbar";
 import Sidebar from "../../components/sidebar/Sidebar";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteProduct, listAllProducts } from "../../../actions/productActions";
+import { listOrders } from "../../../actions/orderActions";
 
 
- const DashProductList = () => {
+
+ const DashOrderList = () => {
+     const [data, setData] = useState([])
   const dispatch = useDispatch()
-  const productList = useSelector((state) => state.productList)
-  const {loading, products} = productList
+  const orderList = useSelector((state) => state.orderList)
+//   const {loading, products} = orderList
+ 
 
   useEffect(()=> {
-    dispatch(listAllProducts())
+    dispatch(listOrders())
   }, [dispatch]) 
 
 
-
-  const handleDelete = (id) => {
-    dispatch(deleteProduct(id))
-    dispatch(listAllProducts())
-  };
-
   const columns = [
-    { field: "_id", headerName: "ID", width: 220 },
+    { field: "id", headerName: "ID", width: 220 },
     {
       field: "product",
       headerName: "Product",
       width: 200,
       renderCell: (params) => {
         return (
-          <div className="productListItem">
-            <img className="productListImg" src={params.row.img} alt="" />
+          <div className="orderListItem">
+            <img className="orderListImg" src={params.row.img} alt="" />
             {params.row.title}
           </div>
         );
@@ -59,12 +56,8 @@ import { deleteProduct, listAllProducts } from "../../../actions/productActions"
         return (
           <>
             <Link to={`/dash-product/${params.row._id}`}>
-              <button className="dashproductListEdit">Edit</button>
+              <button className="dashorderListEdit">View</button>
             </Link>
-            <DeleteOutline
-              className="productListDelete"
-              onClick={() => handleDelete(params.row._id)}
-            />
           </>
         );
       },
@@ -74,14 +67,11 @@ import { deleteProduct, listAllProducts } from "../../../actions/productActions"
   return (
   <div>
     <Topbar />
-    <main className="product-list-dash-container">
+    <main className="order-list-dash-container">
       <Sidebar />
-    <div className="productList">
-        <Link to="/newproduct">
-          <button className="productAddButton">Create</button>
-        </Link>
+    <div className="orderList">
       <DataGrid
-        rows={products}
+        rows={data}
         disableSelectionOnClick
         columns={columns}
         getRowId={(row) => row._id}
@@ -94,4 +84,4 @@ import { deleteProduct, listAllProducts } from "../../../actions/productActions"
   );
 }
 
-export default DashProductList
+export default DashOrderList

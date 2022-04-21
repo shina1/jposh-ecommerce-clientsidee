@@ -21,7 +21,8 @@ export const addToCart = (id, qty, color, size) => async(dispatch, getState) => 
             countInStock: data.countInStock,
             reviews: data.reviews,
             qty,
-            total: data.price * qty
+            vat: data.price * qty * 0.2,
+            total: data.price * qty + data.price * qty * 0.2,
         }
     })
 

@@ -11,7 +11,6 @@ const Success = () => {
   //  recieve stripeData and cart data from the payment page
   const [orderId, setOrderId] = useState('');
   const data = location.state.data;
-  console.log(orderId);
   const cart = location.state.cart;
   const currentUser = useSelector((state) => state.user.currentUser);
   
@@ -31,7 +30,7 @@ const Success = () => {
           });
           setOrderId(res.data._id);
       } catch (error) {
-        console.log(error)
+        throw new Error(error)
       }
     }
     data && createOrder();

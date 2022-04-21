@@ -34,7 +34,7 @@ const About = () => {
   return (
     <Box>
       <Divider section={'ABOUT'}/>
-        <div className='about-container'>
+        <div className='about-container' id='about'>
           <p>
               <span className='about-enph'>Jposh collection</span> a ready to wear fashion trend was founded in 2021 by a Nigerian fashion designer and content creator, <span className='about-enph'>Jumai Usman-Ibrahim</span> in London, U.K.
               The fashion store has created many <b>ready to wear</b> outfits leaning heavily on the influnce of culture and lifestyle. Some of thses outfits includes Aso-Ebi, costume wears, Bridal wears.

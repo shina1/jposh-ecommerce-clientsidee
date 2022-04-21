@@ -22,7 +22,6 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault()
-    console.log(email, password);
     dispatch(login(email, password))
   }
   useEffect(() => {

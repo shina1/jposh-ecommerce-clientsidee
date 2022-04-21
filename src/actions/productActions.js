@@ -1,5 +1,5 @@
 import axios from "axios";
-import {PORPULAR_PRODUCT_LIST_FAIL, PORPULAR_PRODUCT_LIST_REQUEST, PORPULAR_PRODUCT_LIST_SUCCESS, PRODUCT_CATEGORY_LIST_FAIL, PRODUCT_CATEGORY_LIST_REQUEST, PRODUCT_CATEGORY_LIST_SUCCESS, PRODUCT_CREATE_FAIL, PRODUCT_CREATE_REQUEST, PRODUCT_CREATE_REVIEW_FAIL, PRODUCT_CREATE_REVIEW_REQUEST, PRODUCT_CREATE_REVIEW_SUCCESS, PRODUCT_CREATE_SUCCESS, PRODUCT_DETAILS_FAIL, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_TOP_FAIL, PRODUCT_TOP_REQUEST, PRODUCT_TOP_SUCCESS, PRODUCT_UPDATE_FAIL, PRODUCT_UPDATE_REQUEST, PRODUCT_UPDATE_SUCCESS} from "../constants/productConstants";
+import {PORPULAR_PRODUCT_LIST_FAIL, PORPULAR_PRODUCT_LIST_REQUEST, PORPULAR_PRODUCT_LIST_SUCCESS, PRODUCT_CATEGORY_LIST_FAIL, PRODUCT_CATEGORY_LIST_REQUEST, PRODUCT_CATEGORY_LIST_SUCCESS, PRODUCT_CREATE_FAIL, PRODUCT_CREATE_REQUEST, PRODUCT_CREATE_REVIEW_FAIL, PRODUCT_CREATE_REVIEW_REQUEST, PRODUCT_CREATE_REVIEW_SUCCESS, PRODUCT_CREATE_SUCCESS, PRODUCT_DELETE_FAIL, PRODUCT_DELETE_REQUEST, PRODUCT_DELETE_SUCCESS, PRODUCT_DETAILS_FAIL, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_TOP_FAIL, PRODUCT_TOP_REQUEST, PRODUCT_TOP_SUCCESS, PRODUCT_UPDATE_FAIL, PRODUCT_UPDATE_REQUEST, PRODUCT_UPDATE_SUCCESS} from "../constants/productConstants";
 import { logout } from "./userActions";
 
 // keyword = '', pageNumber = ''
@@ -93,7 +93,7 @@ export const listProductByCategory = (category) => async(dispatch) => {
     }
 }
 
-export const createProduct = () => async(dispatch, getState) => {
+export const createProduct = (product) => async(dispatch, getState) => {
     try {
         dispatch({
             type: PRODUCT_CREATE_REQUEST,
@@ -109,7 +109,7 @@ export const createProduct = () => async(dispatch, getState) => {
             }
         }
 
-        const { data } = await axios.post(`http://localhost:2600/api/v1/products/`, {}, config)
+        const { data } = await axios.post(`http://localhost:2600/api/v1/products/`, product, config)
 
         dispatch({
             type: PRODUCT_CREATE_SUCCESS,
@@ -131,7 +131,7 @@ export const createProduct = () => async(dispatch, getState) => {
     }
 }
 
-export const updateProduct = (product) => async (dispatch, getState) => {
+export const updateProduct = (product, productId) => async (dispatch, getState) => {
     try {
         dispatch({type: PRODUCT_UPDATE_REQUEST})
         const {
@@ -145,7 +145,7 @@ export const updateProduct = (product) => async (dispatch, getState) => {
             },
           }
 
-          const {data} = await axios.put(`http://localhost:2600/api/v1/products/edit/${product._id}, `, product, config)
+          const {data} = await axios.put(`http://localhost:2600/api/v1/products/edit/${productId}`, product, config)
           dispatch({
               type: PRODUCT_UPDATE_SUCCESS,
               payload: data
@@ -227,6 +227,44 @@ export const createProductReview = (productId, review) => async (
           error.response && error.response.data.message
             ? error.response.data.message
             : error.message,
+      })
+    }
+  }
+
+  // localhost:2600/api/v1/products/delete/
+
+  export const deleteProduct = (id) => async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: PRODUCT_DELETE_REQUEST,
+      })
+  
+      const {
+        userLogin: { userInfo },
+      } = getState()
+  
+      const config = {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      }
+  
+      await axios.delete(`http://localhost:2600/api/v1/products/delete/${id}`, config)
+  
+      dispatch({
+        type: PRODUCT_DELETE_SUCCESS,
+      })
+    } catch (error) {
+      const message =
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+      if (message === 'Not authorized, token failed') {
+        dispatch(logout())
+      }
+      dispatch({
+        type: PRODUCT_DELETE_FAIL,
+        payload: message,
       })
     }
   }

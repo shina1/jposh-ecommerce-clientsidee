@@ -26,7 +26,6 @@ const SingleProduct = () => {
     const  productDetails = useSelector((state) => state.productDetails)
     const cart = useSelector((state) => state.cart)
 
-    console.log(cart.cartItems);
     
     const {loading, product, error} = productDetails
     useEffect(() => {
@@ -47,7 +46,7 @@ const SingleProduct = () => {
         // open notification
         notification[type]({
             message: 'SUCCCESS',
-            duration: 2,
+            duration: 1,
             description:
               'Item added to cart. Proceed to payment or continue shopping!',
           });   

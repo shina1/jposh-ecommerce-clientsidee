@@ -6,12 +6,9 @@ import { Add, Remove, Delete } from '@material-ui/icons'
 import styledComponents from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import StripeCheckout from 'react-stripe-checkout';
-
 import './style.css'
-import logo from '../../assets/images/logo.ico'
-import { userRequest } from '../../utils/requestMethods.js';
 import { removeFromCart } from '../../actions/cartAction';
+import Message from '../../Components/message/Message';
 
 const Hr = styledComponents.hr`
 background-color: #eee;
@@ -53,8 +50,11 @@ const Cart = () => {
       }
 
    
- 
-    let total = cart.cartItems.reduce((acc, val) => acc + val.total ,0)
+    
+    let total = cart.cartItems.reduce((acc, val) => acc + val.total ,0);
+    // let vat = subTotal * 0.2;
+    
+
     const handleCheckout = () => {
         if(userLogin.userInfo !== null){
             navigate('/shipping')
@@ -62,12 +62,13 @@ const Cart = () => {
         else(
             navigate('/login')
         )
-    }
+    };
     
     const removeFromCartHandler = (id) => {
         dispatch(removeFromCart(id))
-      }
+      };
   return (
+      
     <main className='cart-main-cont'>
         <ResponsiveHeader />
         <section className='cart-container'>
@@ -93,6 +94,9 @@ const Cart = () => {
             {/* </div> */}
             <div className='cart-bottom'>
                 <div className='cart-info'>
+                    {
+                        total <= 0  && <Message type={'error'} message={'Your cart is empty'} />
+                    }
 
                     {
                      cart.cartItems.map(product => (
@@ -128,6 +132,10 @@ const Cart = () => {
                     <div className='summary-item'>
                         <h4>Subtotal Items</h4>
                         <span>{cart.cartItems.reduce((acc, item) => acc + item.qty, 0)}</span>
+                    </div>
+                    <div className='summary-item'>
+                        <h4>Tax/VAT</h4>
+                        <span>£ {cart.cartItems.reduce((acc, item) => acc + item.vat ,0)}</span>
                     </div>
                     <div className='summary-item'>
                         <h4 className='total'>Total</h4>

@@ -162,7 +162,7 @@ margin:10px auto;
 
 const Footer = () => {
   return (
-    <Box>
+    <Box id='#contant'>
         <Container>
             <Left>
                 <Logo>
@@ -200,9 +200,9 @@ const Footer = () => {
             </Center>
             <Right>
                 <Title>Contact</Title>
-                <ContactItem><Room/> <p>10 JhonDoe Street, Block 12a, 123456</p></ContactItem>
-                <ContactItem><Phone/> <p>+2-567-89012-45</p></ContactItem>
-                <ContactItem><MailOutlined/> <p>contact@jposh-collection.co.uk</p> </ContactItem>
+                <ContactItem><Room/> <p>United Kingdom</p></ContactItem>
+                <ContactItem><Phone/> <p>+447470708848</p></ContactItem>
+                <ContactItem><MailOutlined/> <p>contact@jposhcollection.co.uk</p> </ContactItem>
                 <Payment src={payment} alt='payment'/>
             </Right>
         </Container>

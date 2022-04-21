@@ -57,7 +57,7 @@ const ResponsiveHeader = () => {
             <a href="#about">ABOUT</a>
           </li>
           <li className="option" onClick={closeMobileMenu}>
-            <Link to={"/contact"}>CONTACT</Link>
+            <Link to={"#contact"}>CONTACT</Link>
           </li>
           {
            
@@ -76,9 +76,8 @@ const ResponsiveHeader = () => {
             userInfo !== null && (
               userInfo.isAdmin === true ? ( <li>
                 <Select defaultValue={userInfo.name} style={{ width: 100 }} >
-                  <Option> <Link to='/admin-home'>Admin</Link></Option>
-                  <Option>Profile</Option>
-                  <Option><button onClick={logoutHandler}>Logout</button></Option>
+                  <Option key={1}> <Link to='/admin-home'>Admin</Link></Option>
+                  <Option key={2}><button onClick={logoutHandler}>Logout</button></Option>
                 </Select>
              </li>) :
               <li className="sign-in">
