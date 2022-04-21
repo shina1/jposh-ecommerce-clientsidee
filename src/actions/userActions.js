@@ -17,7 +17,7 @@ export const  login = (email, password) => async(dispatch)=> {
         })
        
 
-        const { data } = await axios.post('http://localhost:2600/api/v1/auth/login', {email, password}, config)
+        const { data } = await axios.post('https://ancient-beach-60604.herokuapp.com/api/v1/auth/login', {email, password}, config)
 
         dispatch({
             type: USER_LOGIN_SUCCESS,
@@ -56,7 +56,7 @@ export const register = (name, email, password) => async(dispatch) => {
                 "Content-Type" : "application/json",
             }
         }
-        const {data} = await axios.post('http://localhost:2600/api/v1/auth/register', {name, email, password}, config) 
+        const {data} = await axios.post('https://ancient-beach-60604.herokuapp.com/api/v1/auth/register', {name, email, password}, config) 
 
         dispatch({
             type: USER_REGISTER_SUCCESS,
@@ -93,7 +93,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
         },
       }
   
-      const { data } = await axios.get(`http://localhost:2600/api/v1/users/find/${id}`, config)
+      const { data } = await axios.get(`https://ancient-beach-60604.herokuapp.com/api/v1/users/find/${id}`, config)
   
       dispatch({
         type: USER_DETAILS_SUCCESS,
@@ -133,7 +133,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
         },
       }
   
-      const { data } = await axios.put(`/api/users/profile`, user, config)
+      const { data } = await axios.put(`https://ancient-beach-60604.herokuapp.com/api/users/profile`, user, config)
   
       dispatch({
         type: USER_UPDATE_PROFILE_SUCCESS,
@@ -176,7 +176,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
         },
       }
   
-      const { data } = await axios.get(`http://localhost:2600/api/v1/users/findall`, config)
+      const { data } = await axios.get(`https://ancient-beach-60604.herokuapp.com/api/v1/users/findall`, config)
   
       dispatch({
         type: USER_LIST_SUCCESS,
@@ -215,7 +215,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
         },
       }
   
-      const { data } = await axios.get(`http://localhost:2600/api/v1/users/userStats`, config)
+      const { data } = await axios.get(`https://ancient-beach-60604.herokuapp.com/api/v1/users/userStats`, config)
   
       dispatch({
         type: USER_STATS_SUCCESS,
@@ -253,7 +253,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
         },
       }
   
-      const { data } = await axios.get(`http://localhost:2600/api/v1/users/findall/?new=true`, config)
+      const { data } = await axios.get(`https://ancient-beach-60604.herokuapp.com/api/v1/users/findall/?new=true`, config)
   
       dispatch({
         type: USER_LIST_NEW_SUCCESS,
@@ -290,7 +290,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
         },
       }
   
-      await axios.delete(`http://localhost:2600/api/v1/users/delete/${id}`, config)
+      await axios.delete(`https://ancient-beach-60604.herokuapp.com/api/v1/users/delete/${id}`, config)
   
       dispatch({ type: USER_DELETE_SUCCESS })
     } catch (error) {
@@ -326,7 +326,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
         },
       }
   
-      const { data } = await axios.put(`/api/users/${user._id}`, user, config)
+      const { data } = await axios.put(`https://ancient-beach-60604.herokuapp.com/api/users/${user._id}`, user, config)
   
       dispatch({ type: USER_UPDATE_SUCCESS })
   

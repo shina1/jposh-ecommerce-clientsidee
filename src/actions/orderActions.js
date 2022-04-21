@@ -24,7 +24,7 @@ export const createOrder = (order) => async(dispatch, getState) =>{
             },
         }
 
-        const {data} = await axios.post("http://localhost:2600/api/v1/order/", order, config)
+        const {data} = await axios.post("https://ancient-beach-60604.herokuapp.com/api/v1/order/", order, config)
         
         dispatch({
             type: ORDER_CREATE_SUCCESS,
@@ -67,7 +67,7 @@ export const getOrderDetails = (id) => async(dispatch, getState) => {
             },
         }
 
-        const { data } = await axios.get(`http://localhost:2600/api/v1/order/${id}`, config)
+        const { data } = await axios.get(`https://ancient-beach-60604.herokuapp.com/api/v1/order/${id}`, config)
 
         dispatch({
             type: ORDER_DETAILS_SUCCESS,
@@ -107,7 +107,7 @@ export const payOrder = (orderId, paymentResult) => async(dispatch, getState) =>
             },
         }
 
-        const { data } = await axios.put(`http://localhost:2600/api/v1/order/${orderId}/pay`, paymentResult, config)
+        const { data } = await axios.put(`https://ancient-beach-60604.herokuapp.com/api/v1/order/${orderId}/pay`, paymentResult, config)
         dispatch({
             type: ORDER_PAY_SUCCESS,
             payload: data,
@@ -146,7 +146,7 @@ export const deliverOrder = (order) => async (dispatch, getState) => {
       }
   
       const { data } = await axios.put(
-        `http://localhost:2600/api/orders/${order._id}/deliver`,
+        `https://ancient-beach-60604.herokuapp.com/api/orders/${order._id}/deliver`,
         {},
         config
       )
@@ -188,7 +188,7 @@ export const deliverOrder = (order) => async (dispatch, getState) => {
         },
       }
   
-      const { data } = await axios.get(`http://localhost:2600/api/v1/order/findall`, config)
+      const { data } = await axios.get(`https://ancient-beach-60604.herokuapp.com/api/v1/order/findall`, config)
   
       dispatch({
         type: ORDER_LIST_MY_SUCCESS,
@@ -226,7 +226,7 @@ export const deliverOrder = (order) => async (dispatch, getState) => {
         },
       }
   
-      const { data } = await axios.get(`http://localhost:2600/api/v1/order/findall`, config)
+      const { data } = await axios.get(`https://ancient-beach-60604.herokuapp.com/api/v1/order/findall`, config)
   
       dispatch({
         type: ORDER_LIST_SUCCESS,
@@ -264,7 +264,7 @@ export const deliverOrder = (order) => async (dispatch, getState) => {
         },
       }
   
-      const { data } = await axios.get(`http://localhost:2600/api/v1/order/findall?new=true`, config)
+      const { data } = await axios.get(`https://ancient-beach-60604.herokuapp.com/api/v1/order/findall?new=true`, config)
   
       dispatch({
         type: ORDER_LIST_NEW_SUCCESS,
@@ -301,7 +301,7 @@ export const deliverOrder = (order) => async (dispatch, getState) => {
           Authorization: `Bearer ${userInfo.token}`,
         },
       }
-      const { data } = await axios.get("http://localhost:2600/api/v1/order/income", config);
+      const { data } = await axios.get("https://ancient-beach-60604.herokuapp.com/api/v1/order/income", config);
 
       dispatch({
         type: ORDER_ANALYSIS_SUCCESS,
