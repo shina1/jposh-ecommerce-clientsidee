@@ -54,6 +54,12 @@ export default function Sidebar() {
                 Products
               </li>
             </Link>
+            <Link to="/" className="link">
+              <li className="sidebarListItem">
+                <Storefront className="sidebarIcon" />
+                Main Page
+              </li>
+            </Link>
             {/* <li className="sidebarListItem">
               <BarChart className="sidebarIcon" />
               Reports
