@@ -7,6 +7,7 @@ import Topbar  from "../../components/topbar/Topbar";
 import Sidebar from "../../components/sidebar/Sidebar";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteProduct, listAllProducts } from "../../../actions/productActions";
+import Loader from "../../../Components/loader/Loader";
 
 
  const DashProductList = () => {
@@ -76,19 +77,29 @@ import { deleteProduct, listAllProducts } from "../../../actions/productActions"
     <Topbar />
     <main className="product-list-dash-container">
       <Sidebar />
-    <div className="productList">
-        <Link to="/newproduct">
-          <button className="productAddButton">Create</button>
-        </Link>
-      <DataGrid
+    {/* {
+      loading && <Loader />
+    } */}
+    
+      <div className="productList">
+      <Link to="/newproduct">
+        <button className="productAddButton">Create</button>
+      </Link>
+      {
+        products ?  <DataGrid
         rows={products}
         disableSelectionOnClick
         columns={columns}
         getRowId={(row) => row._id}
         pageSize={8}
         checkboxSelection
-      />
-    </div>
+      /> :
+      <div className="loader-box">
+            <Loader />
+      </div>
+      }
+  </div>
+    
     </main>
   </div>
   );

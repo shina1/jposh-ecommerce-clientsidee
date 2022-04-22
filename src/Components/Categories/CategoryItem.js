@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { listAllProducts } from '../../actions/productActions'
 import { devices } from '../../assets/screenSizes'
+import Message from '../message/Message';
+import Loader from '../loader/Loader';
 
 const Container = styled.div`
 flex:1;
@@ -101,9 +103,12 @@ const CategoryItem = ({category}) => {
     <Container>
         {
           loading &&  
-          <Box sx={{ display: 'flex' }}>
-          <CircularProgress />
-        </Box>
+          <div className="loader-box">
+              <Loader />
+          </div>
+        }
+        {
+          error &&  <Message type={"error"} message={"something went wrong! Check your connection."}/>
         }
             <Link to={`/products/${category.cat}`}>
               <Image src={category.img} alt='categories'/>

@@ -11,7 +11,12 @@
     grid-gap: 1rem;
 }
 /* product wrapper styling */
-
+.loader-box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
 .productWrapper{
   margin: 20px 0;
   width: 100%;

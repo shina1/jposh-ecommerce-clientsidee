@@ -170,7 +170,7 @@ const Footer = () => {
                 </Logo>
                 <Desc>
                     <Paragraph>
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
+                    Jposh collection a ready to wear fashion trend was founded in 2020 by a Nigerian fashion designer and content creator, Jumai Usman-Ibrahim in London, U.K.
                     </Paragraph>
                 </Desc>
                 <SocialContainer>

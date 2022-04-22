@@ -12,6 +12,7 @@ import { listProductDetails, updateProduct } from "../../../actions/productActio
 import { getStorage, ref, uploadBytes , uploadBytesResumable, getDownloadURL} from "firebase/storage";
 import app from "../../../firbase";
 import Message from "../../../Components/message/Message";
+import Loader from "../../../Components/loader/Loader";
 
  const DashProduct = () => {
      const params = useParams()
@@ -111,43 +112,61 @@ import Message from "../../../Components/message/Message";
       <div className="productTop">
           <div className="productTopLeft">
               {/* <Chart data={productData} dataKey="Sales" title="Sales Performance"/> */}
-              <div className="productInfoItem">
-                        <span className="productInfoKey">Description: </span>
-                        <p className="productInfoValue"> {product.desc}</p>
-                    </div>
+              {
+                product ? <div className="productInfoItem">
+                <span className="productInfoKey">Description: </span>
+                <p className="productInfoValue"> {product.desc}</p>
+                </div>
+                          :
+                <div className="loader-box">
+                    <Loader />
+                </div>
+              }
           </div>
         
-                <div className="productTopRight" >
-                <div className="productInfoTop">
+            <div className="productTopRight" >
+                  {
+                    product ? <div className="productInfoTop">
                     <img src={product.img} alt="" className="productInfoImg" />
                     <span className="productInfoValue">{product.title}</span>
-                </div>
-                <div className="productInfoBottom">
-                    <div className="productInfoItem">
-                        <span className="productInfoKey">id: </span>
-                        <span className="productInfoValue"> {productId}</span>
-                    </div>
-                    {/* <div className="productInfoItem">
-                        <span className="productInfoKey">name:</span>
-                        <span className="productInfoValue">{product.title}</span>
-                    </div> */}
-                    {/* <div className="productInfoItem">
-                        <span className="productInfoKey">description:</span>
-                        <span className="productInfoValue">{product.desc}</span>
-                    </div> */}
-                    <div className="productInfoItem">
-                        <span className="productInfoKey">price:</span>
-                        <span className="productInfoValue">£ {product.price}</span>
-                    </div>
-                    <div className="productInfoItem">
-                        <span className="productInfoKey">discount:</span>
-                        <span className="productInfoValue">{product.discount ? "true" : "false"}</span>
-                    </div>
-                    <div className="productInfoItem">
-                        <span className="productInfoKey">in stock:</span>
-                        <span className="productInfoValue">{product.inStock ? "true" : "false"}</span>
-                    </div>
-                </div>
+                    </div> :
+                      <div className="loader-box">
+                          <Loader />
+                      </div>
+                  }
+                 {
+                   product ?
+                   <div className="productInfoBottom">
+                   <div className="productInfoItem">
+                       <span className="productInfoKey">id: </span>
+                       <span className="productInfoValue"> {productId}</span>
+                   </div>
+                   {/* <div className="productInfoItem">
+                       <span className="productInfoKey">name:</span>
+                       <span className="productInfoValue">{product.title}</span>
+                   </div> */}
+                   {/* <div className="productInfoItem">
+                       <span className="productInfoKey">description:</span>
+                       <span className="productInfoValue">{product.desc}</span>
+                   </div> */}
+                   <div className="productInfoItem">
+                       <span className="productInfoKey">price:</span>
+                       <span className="productInfoValue">£ {product.price}</span>
+                   </div>
+                   <div className="productInfoItem">
+                       <span className="productInfoKey">discount:</span>
+                       <span className="productInfoValue">{product.discount ? "true" : "false"}</span>
+                   </div>
+                   <div className="productInfoItem">
+                       <span className="productInfoKey">in stock:</span>
+                       <span className="productInfoValue">{product.inStock ? "true" : "false"}</span>
+                   </div>
+               </div>
+               :
+               <div className="loader-box">
+                       <Loader />
+               </div>
+                 }
             </div>
       </div>
       <div className="productBottom">

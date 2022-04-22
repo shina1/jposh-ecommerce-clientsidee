@@ -4,6 +4,12 @@
   justify-content: space-between;
 }
 
+.loader-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
 .featuredItem {
   flex: 1;
   margin: 0px 20px;
