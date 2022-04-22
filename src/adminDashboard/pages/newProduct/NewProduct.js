@@ -64,7 +64,7 @@ uploadTask.on('state_changed',
     // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
     console.log('Upload is ' + progress + '% done');
-    // progress != 100 && <Loader />
+    progress != 100 && <Loader />
     switch (snapshot.state) {
       case 'paused':
         console.log('Upload is paused');
@@ -128,7 +128,7 @@ useEffect(() => {
         </div>
         <div className="addProductItem">
           <label>Category</label>
-          <select name="inStock" onChange={handleChange}>
+          <select name='category' onChange={handleChange}>
             <option>choose an option</option>
             <option value='women'>Women </option>
             <option value='men'>Men</option>
