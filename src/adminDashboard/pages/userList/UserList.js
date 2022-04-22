@@ -9,6 +9,7 @@ import Topbar from "../../components/topbar/Topbar";
 import Sidebar from "../../components/sidebar/Sidebar";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteUser, listUsers } from "../../../actions/userActions";
+import Loader from "../../../Components/loader/Loader";
 
  const UserListDash = () => {
   const [data, setData] = useState(userRows);
@@ -79,14 +80,17 @@ import { deleteUser, listUsers } from "../../../actions/userActions";
       <Sidebar />
       <div className="userList">
         {
-          allUsers && <DataGrid
+          allUsers ? <DataGrid
           rows={allUsers}
           disableSelectionOnClick
           columns={columns}
           getRowId={(row) => row._id}
           pageSize={8}
           checkboxSelection
-        />
+        /> :
+        <div className="loader-box">
+          <Loader />
+        </div>
         }
         
       </div>

@@ -4,12 +4,15 @@ import React from 'react'
 import './style.css'
 import './filteredProducts.css'
 import { Link } from 'react-router-dom'
+import Loader from '../loader/Loader'
 
 
 const FilteredProducts = ({product}) => {
   return (
         <div className='filteredProduct-container'>
-          <div className='productWrapper'>
+          {
+            product ? 
+            <div className='productWrapper'>
             <img src={product.img} alt="filtered Products"/>
             <div className='productWrapper-footer'>
               <div className='inner'>
@@ -37,6 +40,12 @@ const FilteredProducts = ({product}) => {
              </div>
             </div>
           </div>
+            : 
+            <div className="loader-box">
+              <Loader />
+            </div>
+          }
+         
         </div>
   )
 }

@@ -21,6 +21,7 @@ import PaymentMethod from './screens/paymentMethod'
 import PlaceOrderScreen from './screens/placeOrderScreen'
 import OrderScreen from './screens/orderScreen'
 import DashOrderList from './adminDashboard/pages/orderList/orderList'
+import AboutScreen from './screens/aboutPage'
 
 const App = () => {
   // const user = useSelector((state) => state.userLogin)
@@ -50,6 +51,7 @@ const App = () => {
         <Route path='/payment' element={<PaymentMethod />} />
         <Route path='/placeoder' element={<PlaceOrderScreen />} />
         <Route path='/order/:id' element={<OrderScreen />} />
+        <Route path='/about-us' element={<AboutScreen />} />
       </Routes>
     </Router>
     // <>

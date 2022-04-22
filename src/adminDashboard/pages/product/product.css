@@ -57,6 +57,12 @@
   font-weight: 600;
 }
 
+.loader-box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
 .productInfoBottom {
   margin-top: 10px;
 }

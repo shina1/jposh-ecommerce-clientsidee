@@ -12,7 +12,9 @@ import "./style.css"
 import axios from 'axios'
 import StripeCheckout from 'react-stripe-checkout'
 import OpenNotificationWithIcon from '../../Components/Notification'
-const KEY = process.env.REACT_APP_JPOSH_STRIPE_KEY
+const {REACT_APP_JPOSH_STRIPE_TEST_KEY , REACT_APP_JPOSH_STRIPE_KEY, NODE_ENV } = process.env;
+const KEY = REACT_APP_JPOSH_STRIPE_TEST_KEY;
+
 
 const OrderScreen = () => {
     const dispatch = useDispatch();

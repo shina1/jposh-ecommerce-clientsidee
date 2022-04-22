@@ -2,6 +2,7 @@
 import { FavoriteBorderOutlined, SearchOutlined, ShoppingCartOutlined, StarRateOutlined, } from '@material-ui/icons'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Loader from '../loader/Loader'
 import Rating from '../Ratings'
 import './style.css'
 
@@ -9,7 +10,9 @@ import './style.css'
 const PopularProducts = ({product}) => {
   return (
         <div className='popularProduct-container'>
-          <div className='productWrapper'>
+          {
+            product ?
+            <div className='productWrapper'>
             <img src={product.img} alt="Popular Products"/>
             <div className='productWrapper-footer'>
               <div className='inner'>
@@ -38,7 +41,12 @@ const PopularProducts = ({product}) => {
                <h4>£{product.price}</h4>
              </div>
             </div>
-          </div>
+          </div>  :
+            <div className="loader-box">
+                <Loader />
+            </div> 
+          }
+          
         </div>
   )
 }

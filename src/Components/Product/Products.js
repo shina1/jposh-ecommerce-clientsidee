@@ -6,6 +6,8 @@ import PopularProducts from '.'
 import { listPorpularProducts } from '../../actions/productActions'
 // import { popularProducts } from '../../data'
 import Divider from '../Divider'
+import Loader from '../loader/Loader'
+import Message from "../message/Message"
 import './style.css'
 
 
@@ -18,7 +20,7 @@ const Products = ({category}) => {
   const dispatch = useDispatch()
   const porpularProducts = useSelector((state) => state.porpularProducts)
   
-  const {loading, eror, products } = porpularProducts
+  const {loading, error, products } = porpularProducts
 
   useEffect(() => {
     dispatch(listPorpularProducts())
@@ -27,11 +29,20 @@ const Products = ({category}) => {
   return (
     <Box>
       <Divider section={'PORPULAR PRODUCTS'} />
+      {loading && <div className="loader-box">
+            <Loader />
+          </div> 
+      }
+      {error && <Message type={'error'} message={"something went wrong!"}/>
+      }
         <div className='productContainer'>
           {
-           products && products.map(product => (
+           products ? products.map(product => (
               <PopularProducts product={product} key={product._id} />
-            ))  
+            )) :
+            <div className="loader-box">
+            <Loader />
+          </div> 
           }
         </div>
     </Box>

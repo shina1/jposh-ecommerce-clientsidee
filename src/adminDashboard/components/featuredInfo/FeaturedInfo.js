@@ -3,6 +3,7 @@ import "./featuredInfo.css";
 import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { getAnalysis } from "../../../actions/orderActions";
+import Loader from "../../../Components/loader/Loader";
 
 export default function FeaturedInfo() {
   // const [income, setIncome] = useState([])
@@ -20,7 +21,7 @@ export default function FeaturedInfo() {
       <div className="featuredItem">
         <span className="featuredTitle">Revenue</span>
        {
-         analysis &&  <div className="featuredMoneyContainer">
+         analysis ? <div className="featuredMoneyContainer">
          <span className="featuredMoney">£{analysis[1].total}</span>
          <span className="featuredMoneyRate">
            %{Math.floor((analysis[1].total*100) / analysis[0].total - 100)}
@@ -32,7 +33,10 @@ export default function FeaturedInfo() {
            } 
            
          </span>
-       </div>
+       </div> :
+       <div className="loader-box">
+         <Loader />
+      </div>
        }
         <span className="featuredSub">Compared to last month</span>
       </div>

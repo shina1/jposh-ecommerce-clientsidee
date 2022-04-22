@@ -6,6 +6,7 @@ import styledComponents from 'styled-components'
 import PopularProducts from '.'
 import { listAllProducts } from '../../actions/productActions'
 import './style.css'
+import Loader from '../loader/Loader';
 
 
 const Box = styledComponents.div`
@@ -44,12 +45,17 @@ const AllProductsComponent = ({category, filters, sort}) => {
     <Box>
         <div className='productContainer'>
           {
-            loading && <Spin size='large' style={{color: "red", textAlign: "center !mportant"}}/>
+            loading && <div className="loader-box">
+            <Loader />
+         </div>
           }
           {
-            products && products.map(product => (
+            products ? products.map(product => (
               <PopularProducts product={product} key={product._id} filters={filters} sort={sort} />
-            ))  
+            )) :
+            <div className="loader-box">
+                <Loader />
+            </div>  
           }
         </div>
     </Box>

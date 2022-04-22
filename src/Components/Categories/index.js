@@ -16,7 +16,7 @@ const Categories = () => {
       <Divider section={'CATEGORIES'}/>
       <div className='category-container' id='cat'>
         {
-            categories.map(category => (
+           categories && categories.map(category => (
                 <CategoryItem  category={category} key={category.id}/>
             ))
         }

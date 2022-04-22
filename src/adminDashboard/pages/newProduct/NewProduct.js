@@ -8,10 +8,12 @@ import { getStorage, ref, uploadBytes , uploadBytesResumable, getDownloadURL} fr
 import "./newProduct.css";
 import app from "../../../firbase";
 import Message from "../../../Components/message/Message";
+import Loader from "../../../Components/loader/Loader";
 
 
  const NewProduct = () => {
     const  [inputs, setInputs] = useState({})
+    // const  [category, setCategory] = useState()
     const [size, setSize] = useState([])
     const [color, setColor] = useState([])
     const [file, setFile] = useState(null)
@@ -62,6 +64,7 @@ uploadTask.on('state_changed',
     // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
     console.log('Upload is ' + progress + '% done');
+    // progress != 100 && <Loader />
     switch (snapshot.state) {
       case 'paused':
         console.log('Upload is paused');
@@ -125,7 +128,21 @@ useEffect(() => {
         </div>
         <div className="addProductItem">
           <label>Category</label>
-          <input type="text" placeholder="Product Category" name='category' onChange={handleChange}/>
+          <select name="inStock" onChange={handleChange}>
+            <option>choose an option</option>
+            <option value='women'>Women </option>
+            <option value='men'>Men</option>
+            <option value='Accessries'>Accessries</option>
+            <option value='track suits'>Track suits</option>
+            <option value='Aso ebi'>Aso ebi</option>
+            <option value='Adire/Bubu dress'>Adire/Bubu dress</option>
+            <option value='Ankara set'>Ankara set</option>
+            <option value='Bonnet cap'>Bonnet cap</option>
+            <option value='Braided head band'>Braided head band</option>
+            <option value='Sequins head band'>Sequins head band</option>
+            <option value='Pallazo'>Pallazo</option>
+            <option value='others'>Others</option>
+          </select>
         </div>
         <div className="addProductItem">
           <label>Description</label>

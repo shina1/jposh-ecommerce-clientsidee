@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { listNewOrders} from "../../../actions/orderActions";
 import "./widgetLg.css";
 import {format} from "timeago.js"
+import Loader from "../../../Components/loader/Loader";
 
 
 export default function WidgetLg() {
@@ -29,7 +30,7 @@ useEffect(() => {
           <th className="widgetLgTh">Status</th>
         </tr>
        {
-         orders && orders.map((order) => (
+         orders ? orders.map((order) => (
           <tr className="widgetLgTr" key={order._id}>
           <td className="widgetLgUser">
             <img
@@ -45,7 +46,10 @@ useEffect(() => {
             <Button type={order.isDelivered ? "Approved " : "Pending"} />
           </td>
         </tr>
-         ))
+         )):
+         <div className="loader-box">
+             <Loader />
+        </div>
        }
       </table>
     </div>

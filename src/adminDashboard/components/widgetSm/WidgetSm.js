@@ -4,6 +4,7 @@ import { Visibility } from "@material-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { listNewUsers } from "../../../actions/userActions";
 import {format} from "timeago.js"
+import Loader from "../../../Components/loader/Loader";
 
 export default function WidgetSm() {
 
@@ -20,7 +21,7 @@ useEffect(() => {
     <div className="widgetSm">
       <span className="widgetSmTitle">New Join Members</span>
       <ul className="widgetSmList">
-        {users && users.map(user => (
+        {users ? users.map(user => (
              <li className="widgetSmListItem" key={user._id}>
              <img
                src={user.img || "https://icons-for-free.com/iconfiles/png/512/avatar+people+profile+user+icon-1320185001671922416.png"}
@@ -38,7 +39,12 @@ useEffect(() => {
                Display
              </button> */}
            </li>
-        ))}
+        ))
+        :
+        <div className="loader-box">
+          <Loader />
+        </div>
+      }
       </ul>
     </div>
   );

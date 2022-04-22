@@ -5,7 +5,12 @@
     padding:20px;
     height:auto;
 }
-
+.loader-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
 
 
 @media screen and (max-width: 560px) {

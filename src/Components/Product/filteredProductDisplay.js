@@ -5,6 +5,7 @@ import FilteredProducts from './filteredProducts'
 import { listProductByCategory } from '../../actions/productActions'
 import './style.css'
 import { useDispatch, useSelector } from 'react-redux'
+import Loader from '../loader/Loader'
 
 
 const Box = styledComponents.div`
@@ -48,14 +49,19 @@ const FilteredProductsDisp = ({category, filters, sort}) => {
     <Box>
         <div className='productContainer'>
           {
-            filteredProducts.map(product => (
+            filteredProducts ? filteredProducts.map(product => (
               <FilteredProducts product={product} key={product._id} />
-            ))  
+            )) :
+            <div className="loader-box">
+            <Loader />
+       </div>  
           }
         </div>
     </Box>
   )
 
 }
+
+
 
 export default FilteredProductsDisp
