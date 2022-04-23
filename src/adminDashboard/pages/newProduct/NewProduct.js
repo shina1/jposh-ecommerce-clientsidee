@@ -24,7 +24,7 @@ const productCreate = useSelector((state) => state.productCreate)
 
 const {loaidng, success, product}= productCreate
 
-
+console.log(inputs);
 
 const handleChange = (e) => {
   e.preventDefault()
@@ -64,7 +64,6 @@ uploadTask.on('state_changed',
     // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
     console.log('Upload is ' + progress + '% done');
-    progress != 100 && <Loader />
     switch (snapshot.state) {
       case 'paused':
         console.log('Upload is paused');
@@ -158,7 +157,7 @@ useEffect(() => {
         </div>
         <div className="addProductItem">
           <label>Number in Stock</label>
-          <input type="text" placeholder="Product Category" name='countInStock' onChange={handleChange}/>
+          <input type="text" placeholder=" number in stock" name='countInStock' onChange={handleChange}/>
         </div>
         {/* <div className="addProductItem">
           <label>Discount</label>
