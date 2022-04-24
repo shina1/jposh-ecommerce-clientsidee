@@ -117,7 +117,7 @@ const Cart = () => {
                                     <Remove onClick={() => handleCartQuantity("rem")}/>
                                     <Delete onClick={()=> removeFromCartHandler(product.product)}/>
                                 </div>
-                                <div className='product-price'><span>£ {product.price * product.qty}</span></div>
+                                <div className='product-price'><span>£ {product.discount ? product.discoutPrice * product.qty : product.price * product.qty}</span></div>
                             </div>
                             
                    </div>

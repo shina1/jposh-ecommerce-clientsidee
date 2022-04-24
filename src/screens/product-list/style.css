@@ -59,7 +59,7 @@
 } */
 .inner-container{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 .inner-container .title{
     width: 100%;

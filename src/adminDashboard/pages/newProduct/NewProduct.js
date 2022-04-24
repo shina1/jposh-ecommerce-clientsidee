@@ -126,6 +126,14 @@ useEffect(() => {
           <input type="number" placeholder="Product Price" name='price' onChange={handleChange}/>
         </div>
         <div className="addProductItem">
+          <label>Video</label>
+          <input type="text" placeholder="Video URL (youtube or instagram link)" name='video' onChange={handleChange}/>
+        </div>
+        <div className="addProductItem">
+          <label>Discount Price</label>
+          <input type="number" placeholder="Product Discount Price" name='discoutPrice' onChange={handleChange}/>
+        </div>
+        <div className="addProductItem">
           <label>Category</label>
           <select name='category' onChange={handleChange}>
             <option>choose an option</option>
@@ -159,13 +167,14 @@ useEffect(() => {
           <label>Number in Stock</label>
           <input type="text" placeholder=" number in stock" name='countInStock' onChange={handleChange}/>
         </div>
-        {/* <div className="addProductItem">
+        <div className="addProductItem" >
           <label>Discount</label>
-          <select>
+          <select name="discount" onChange={handleChange}>
+            <option>choose an option</option>
             <option value='true'>Yes</option>
             <option value='false'>No</option>
           </select>
-        </div> */}
+        </div>
         <div className="addProductItem">
           <label>Size</label>
           <input type="text"  placeholder="XL, L, M..." onChange={handleSizes} />

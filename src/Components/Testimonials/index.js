@@ -5,6 +5,7 @@ import Slidder from '../SlidderComponent/index.js'
 
 const Box = styledComponents.div`
     margin:100px auto;
+    height: auto;
 `
 
 const Testimonial = () => {

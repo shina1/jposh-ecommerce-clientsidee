@@ -8,12 +8,15 @@ import Loader from '../loader/Loader'
 
 
 const FilteredProducts = ({product}) => {
+  console.log(product);
   return (
         <div className='filteredProduct-container'>
           {
             product ? 
             <div className='productWrapper'>
-            <img src={product.img} alt="filtered Products"/>
+               <Link to={`/product/${product._id}`}>
+                    <img src={product.img} alt="filtered Products"/>  
+                </Link>
             <div className='productWrapper-footer'>
               <div className='inner'>
                   <div className='ratings'>
@@ -24,19 +27,15 @@ const FilteredProducts = ({product}) => {
                     <StarRateOutlined/>
                     <StarRateOutlined/>
                     </div>
-                    <div className='reviews'><span>{product.review} reviews</span></div>
                   </div>
-                <div className='footer-icons'>
-                    <ShoppingCartOutlined/>
-                    <Link to={`/product/${product._id}`}>
-                        <SearchOutlined />
-                    </Link>
-                    <FavoriteBorderOutlined />
-                </div>
+                  <div className='reviews'><span>{product.review} reviews</span></div>
               </div>
              <div className='product-details-foot'>
-               <h4>{product.title}</h4>
-               <h4>£{product.price}</h4>
+               <div className='foot-prod-name'><h4>{product.title}</h4></div>
+               {
+                 product.discount ? <div className='foot-prod-price disc-price'><h4>£{product.price}</h4> <h4>£{Number(product.discoutPrice)}</h4></div> :
+                   <div className='foot-prod-price'><h4>£{product.price}</h4></div>  
+               }
              </div>
             </div>
           </div>

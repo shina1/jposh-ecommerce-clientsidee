@@ -7,6 +7,7 @@ import PopularProducts from '.'
 import { listAllProducts } from '../../actions/productActions'
 import './style.css'
 import Loader from '../loader/Loader';
+import Divider from '../Divider';
 
 
 const Box = styledComponents.div`
@@ -26,23 +27,10 @@ const AllProductsComponent = ({category, filters, sort}) => {
     dispatch(listAllProducts())
   },[dispatch])
 
-  // useEffect(() => {
-  //   const getProducts = async()=> {
-  //     try {
-  //       const res = await axios.get("http://localhost:2600/api/v1/products" )
-  //       setProducts(res.data)
-  //     } catch (error) {
-  //       throw new Error(error)
-  //     }
-  //   }
-
-  //   getProducts()
-  // }, [category])
-
- 
 
   return (
     <Box>
+      <Divider section={'LATEST FASHION'} />
         <div className='productContainer'>
           {
             loading && <div className="loader-box">

@@ -41,6 +41,12 @@
     cursor: pointer;
 }
 
-.productAddButton{
-    margin:20px auto;
+.productAddButton {
+    margin: 20px auto;
+    padding: 5px 10px;
+    border: none;
+    color: #fff;
+    background: #000;
+    border-radius: 5px;
+    cursor: pointer;
 }

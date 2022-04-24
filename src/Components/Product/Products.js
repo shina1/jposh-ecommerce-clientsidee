@@ -12,7 +12,8 @@ import './style.css'
 
 
 const Box = styledComponents.div`
-margin:100px auto;
+margin: 100px auto;
+width: 100%;
 `
 
 
@@ -30,8 +31,8 @@ const Products = ({category}) => {
     <Box>
       <Divider section={'PORPULAR PRODUCTS'} />
       {loading && <div className="loader-box">
-            <Loader />
-          </div> 
+                      <Loader />
+                 </div> 
       }
       {error && <Message type={'error'} message={"something went wrong!"}/>
       }

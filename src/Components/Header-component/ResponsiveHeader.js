@@ -59,9 +59,6 @@ const ResponsiveHeader = () => {
           <li className="option" onClick={closeMobileMenu}>
             <Link to={"#contact"}>CONTACT</Link>
           </li>
-          {
-           
-          }
           <li className="option mobile-option">
             <Link to={"/cart"} className="cart-icon">
                 <Badge badgeContent={cartQuantity} color="primary">
@@ -75,7 +72,7 @@ const ResponsiveHeader = () => {
         {
             userInfo !== null && (
               userInfo.isAdmin === true ? ( <li>
-                <Select defaultValue={userInfo.name} style={{ width: 100 }} >
+                <Select defaultValue={userInfo.name} style={{ width: 100 }} className="option" >
                   <Option key={1}> <Link to='/admin-home'>Admin</Link></Option>
                   <Option key={2}><button onClick={logoutHandler}>Logout</button></Option>
                 </Select>
@@ -92,21 +89,36 @@ const ResponsiveHeader = () => {
           </li>
          ) 
         }
-        {/* {
-          user.userInfo.isAdmin && (
-          
-          ) 
-        } */}
         
-         <li>
+       
+      </ul>
+      <li style={{listStyleType:'none', margin:'0 5px'}}>
            <Link to={"/cart"} className="cart-bgsc-btn">
               <Badge badgeContent={cartQuantity} color="primary">
                   <ShoppingCart />
               </Badge>
            </Link>
       </li>
-       
-      </ul>
+      {/* {
+            userInfo !== null && (
+              userInfo.isAdmin === true ? ( <li className="option" >
+                <Select defaultValue={userInfo.name} style={{ width: 100 }} className="option" >
+                  <Option key={1}> <Link to='/admin-home'>Admin</Link></Option>
+                  <Option key={2}><button onClick={logoutHandler}>Logout</button></Option>
+                </Select>
+             </li>) :
+              <li className="sign-in option">
+                <button onClick={logoutHandler} to=''>Logout</button>
+              </li>
+            )
+        }
+        {
+         !userInfo && (
+          <li className="sign-in" onClick={closeMobileMenu}>
+          <Link to={"/login"}>SIGN-IN</Link>
+          </li>
+         ) 
+        } */}
      
       <div className="mobile-menu" onClick={handleClick}>
         {click ? (

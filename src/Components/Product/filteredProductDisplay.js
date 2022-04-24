@@ -6,6 +6,7 @@ import { listProductByCategory } from '../../actions/productActions'
 import './style.css'
 import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../loader/Loader'
+import Message from '../message/Message'
 
 
 const Box = styledComponents.div`
@@ -28,7 +29,7 @@ const FilteredProductsDisp = ({category, filters, sort}) => {
 
   useEffect(() => {
     category && setFilteredProducts(
-      products.filter(item => Object.entries(filters).every(([key, value]) => item[key].includes(value)
+     products && products.filter(item => Object.entries(filters).every(([key, value]) => item[key].includes(value)
       ))
     )
   }, [products, category, filters])
@@ -47,7 +48,15 @@ const FilteredProductsDisp = ({category, filters, sort}) => {
 
   return (
     <Box>
+       {
+        error && <Message type={'error'} message={'something went wrong! Check your connection'}/>
+      }
         <div className='productContainer'>
+        {
+        loading &&  <div className="loader-box">
+                        <Loader />
+                    </div>
+      }
           {
             filteredProducts ? filteredProducts.map(product => (
               <FilteredProducts product={product} key={product._id} />

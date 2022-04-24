@@ -14,6 +14,8 @@ export const addToCart = (id, qty, color, size) => async(dispatch, getState) => 
             name: data.title,
             desc: data.desc,
             image: data.img,
+            discount: data.discount,
+            discoutPrice: data.discoutPrice,
             price: data.price,
             category: data.category,
             size: size,
@@ -22,7 +24,7 @@ export const addToCart = (id, qty, color, size) => async(dispatch, getState) => 
             reviews: data.reviews,
             qty,
             vat: data.price * qty * 0.2,
-            total: data.price * qty + data.price * qty * 0.2,
+            total: data.discount ? data.discoutPrice * qty + data.discoutPrice * qty * 0.2 : data.price * qty + data.price * qty * 0.2,
         }
     })
 

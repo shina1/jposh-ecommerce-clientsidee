@@ -8,7 +8,7 @@ import { devices } from '../../assets/screenSizes'
 
 const Container = styled.div`
     width: 99.6%;
-    height: 95vh;
+    height: 35vh;
     display: flex; 
     margin:0 auto;
     position: relative;
@@ -81,11 +81,12 @@ const ImageContainer = styled.div`
 `
 const InfoContainer = styled.div`
     width: 100%;
-    height: 45%;
+    height: auto;
     padding: 50px;
 
     @media ${devices.mobileL} {
         width: 100%;
+        height: 100%;
     }
 `
 const Image =  styled.img`
@@ -99,10 +100,11 @@ const Title = styled.h3`
     font-size: 20px;
 `
 const Desc = styled.p`
-    margin: 50px 0;
+    margin: 10px 0;
     font-size: 15px;
-    font-weight: 300;
+    font-weight: 400;
     letter-spacing: 2px;
+
 `
 
 
@@ -124,9 +126,6 @@ const Slidder = () => {
       {
           customerTestimonials.map(item => (
             <Card key={item.id}>
-                <ImageContainer>
-                    <Image src={item.img} alt="slider-one"/>
-                </ImageContainer>
                 <InfoContainer>
                     <Title>{item.name}</Title>
                     <Desc>"{item.desc}"</Desc>

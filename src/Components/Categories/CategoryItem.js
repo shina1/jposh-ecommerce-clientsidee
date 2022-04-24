@@ -10,9 +10,9 @@ import Message from '../message/Message';
 import Loader from '../loader/Loader';
 
 const Container = styled.div`
-flex:1;
-margin:3px;
-height:70vh;
+flex:2;
+margin:10px 3;
+height:50vh;
 position: relative;
 cursor: pointer;
 
@@ -24,7 +24,7 @@ cursor: pointer;
 const Image = styled.img`
 width:100%;
 height:100%;
-object-fit: cover;
+object-fit: fill;
 `
 const InfoCont = styled.div`
 position: absolute;
@@ -49,8 +49,8 @@ background-color : rgba(18, 18, 18, 0.5);
 const Title = styled.h2`
 color: #fff;
 margin-bottom: 20px;
-font-size: 3.5rem;
-font-weight: 600;
+font-size: 2.35rem;
+font-weight: 500;
 text-align:center;
 
 
@@ -89,32 +89,22 @@ const CategoryItem = ({category}) => {
   useEffect(() => {
     dispatch(listAllProducts())
   }, [dispatch])
-
   const getCategoryNumber = () => {
     let catNo = 0
-    products && products.forEach((product) => {
+    products && products.map((product) => {
       if(product.category.toLowerCase() === category.cat.toLowerCase()){
-        catNo = product.category.length
+       catNo = product.category.length
+       console.log(product.category);
       }
     })
     return catNo
   }
   return (
     <Container>
-        {
-          loading &&  
-          <div className="loader-box">
-              <Loader />
-          </div>
-        }
-        {
-          error &&  <Message type={"error"} message={"something went wrong! Check your connection."}/>
-        }
             <Link to={`/products/${category.cat}`}>
               <Image src={category.img} alt='categories'/>
               <InfoCont>
                   <Title>{category.cat}</Title>
-                  <ItemCat>{getCategoryNumber()}</ItemCat>
                   <Button>SHOP NOW</Button>
               </InfoCont>
             </Link>

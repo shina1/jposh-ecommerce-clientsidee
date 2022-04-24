@@ -12,6 +12,8 @@ import "./style.css"
 import axios from 'axios'
 import StripeCheckout from 'react-stripe-checkout'
 import OpenNotificationWithIcon from '../../Components/Notification'
+import Loader from '../../Components/loader/Loader'
+import { Alert } from 'antd'
 const {REACT_APP_JPOSH_STRIPE_TEST_KEY , REACT_APP_JPOSH_STRIPE_KEY, NODE_ENV } = process.env;
 const KEY = REACT_APP_JPOSH_STRIPE_TEST_KEY;
 
@@ -26,6 +28,7 @@ const OrderScreen = () => {
     const user = useSelector((state) => state.userLogin);
     const cart = useSelector((state) => state.cart);
     const orderPay = useSelector((state) => state.orderPay)
+    console.log(orderPay)
     const orderDeliver = useSelector((state) => state.orderDelivery)
    const {loading, order, error} = useSelector((state) => state.orderDetails);
  
@@ -49,7 +52,9 @@ cart.totalPrice = (
 ).toFixed(2)
 
 
-
+const onClose = (e) => {
+    console.log(e, 'I was closed.');
+  };
 
 const onToken = (token) => {
     setStripeToken(token)
@@ -62,15 +67,18 @@ const onToken = (token) => {
             "Content-Type" : "application/json"
         }
         if(stripeToken){
-             await axios.post(`http://localhost:2600/api/v1/checkout/payment`, {headers, stripeToken, amount: order.totalPrice, product: order.orderItems})
+             await axios.post(`https://ancient-beach-60604.herokuapp.com/api/v1/checkout/payment`, {headers, stripeToken, amount: order.totalPrice, product: order.orderItems})
         .then(response => {
             const {status} = response
             if(response.status === 200){
                dispatch(payOrder(id, response))
+               
             }
         })
         .catch(err => {
-            throw new Error(err)}
+            console.log(err);
+           
+        }
             )
         }
        
@@ -93,7 +101,10 @@ const onToken = (token) => {
         <main className='palce-order-container'>
       <ResponsiveHeader />
       {
-          loading && <h2>loading...</h2>
+          loading && <Loader />
+      }
+      {
+          error && <Message type={"error"} message={"Something went wrong! Check your connection"} />
       }
       <div className='place-order-inner-cont'>
             <div className='place-order-inner-left'>
@@ -104,17 +115,17 @@ const onToken = (token) => {
                     <div className='box-det'>
                         <h3>SHIPPING</h3>
                         <div className='box-item'>
-                            <h4>Name : <span>{userDets.name}</span></h4>
+                            <h4>Name : <span>{userDets && userDets.name}</span></h4>
                         </div>
                         <div className='box-item'>
-                            <h4>Email : <span>{userDets.email}</span></h4>
+                            <h4>Email : <span>{userDets && userDets.email}</span></h4>
                         </div>
                         <div className='box-item'>
                             <h4>Address : 
                                 <span>
-                                {cart.shippingAddress.address}, {cart.shippingAddress.city}{' '}
-                                {cart.shippingAddress.postalCode},{' '}
-                                {cart.shippingAddress.country}
+                                {cart && cart.shippingAddress.address}, {cart && cart.shippingAddress.city}{' '}
+                                {cart && cart.shippingAddress.postalCode},{' '}
+                                {cart && cart.shippingAddress.country}
                                 </span>
                             </h4>
                            <div>
@@ -129,7 +140,7 @@ const onToken = (token) => {
                         <h3>PAYMENT METHOD</h3>
                         <div className='box-item'>
                            {
-                               cart.paymentMethod ?  <h4>Method : <span>{cart.paymentMethod}</span></h4>
+                               cart && cart.paymentMethod ?  <h4>Method : <span>{cart.paymentMethod}</span></h4>
                                :
                                <Link to='/payment'>
                                    <h4>Click to select a payment method</h4>
@@ -177,8 +188,8 @@ const onToken = (token) => {
                             <StripeCheckout 
                                  name="JPOSH COLLECTIONS"
                                 //  image={logo}
-                                 description={`Your total is £ ${order.totalPrice} proceed to payment`}
-                                 amount={order.totalPrice * 100}
+                                 description={`Your total is £ ${order && order.totalPrice} proceed to payment`}
+                                 amount={order && order.totalPrice * 100}
                                  token={onToken}
                                  stripeKey={KEY}
                             >

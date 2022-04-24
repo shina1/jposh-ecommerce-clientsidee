@@ -1,34 +1,41 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { Suspense, lazy } from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import SingleProduct from './screens/single-product'
-import Home from './screens/home-screen'
-import ProductList from './screens/product-list/index.js'
-import Cart from './screens/cart'
-import Login from './screens/login'
-import Register from './screens/register'
-import AllProductList from './screens/all-products'
-import Success from './screens/success-screen'
-import AdminHome from './adminDashboard/pages/home/Home'
-import UserProfileDash from './adminDashboard/pages/user/User'
-import NewuserDash from './adminDashboard/pages/newUser/NewUser'
-import UserListDash from './adminDashboard/pages/userList/UserList'
-import NewProduct from './adminDashboard/pages/newProduct/NewProduct'
-import DashProduct from './adminDashboard/pages/product/Product'
-import DashProductList from './adminDashboard/pages/productList/ProductList'
-import Shipping from './screens/shippingScreen'
-import PaymentMethod from './screens/paymentMethod'
-import PlaceOrderScreen from './screens/placeOrderScreen'
-import OrderScreen from './screens/orderScreen'
-import DashOrderList from './adminDashboard/pages/orderList/orderList'
-import AboutScreen from './screens/aboutPage'
+
+
+import Loader from './Components/loader/Loader';
+import ErrorBoundary from "./Components/errorBoundary/index";
+const Home = lazy(() => import('./screens/home-screen'));
+const SingleProduct = lazy(() => import('./screens/single-product'));
+const ProductList = lazy(() => import('./screens/product-list/index.js'));
+const Cart = lazy(() => import('./screens/cart'));
+const Login = lazy(() => import('./screens/login'));
+const Register = lazy(() => import('./screens/register'));
+const AllProductList = lazy(() => import('./screens/all-products'));
+const Success = lazy(() => import('./screens/success-screen'));
+const AdminHome = lazy(() => import('./adminDashboard/pages/home/Home'));
+const UserProfileDash = lazy(() => import('./adminDashboard/pages/user/User'));
+const NewuserDash = lazy(() => import('./adminDashboard/pages/newUser/NewUser'));
+const UserListDash = lazy(() => import('./adminDashboard/pages/userList/UserList'));
+const NewProduct = lazy(() => import('./adminDashboard/pages/newProduct/NewProduct'));
+const DashProduct = lazy(() => import('./adminDashboard/pages/product/Product'));
+const DashProductList = lazy(() => import('./adminDashboard/pages/productList/ProductList'));
+const Shipping  = lazy(() => import('./screens/shippingScreen'));
+const PaymentMethod = lazy(() => import('./screens/paymentMethod'));
+const PlaceOrderScreen  = lazy(() => import('./screens/placeOrderScreen'));
+const OrderScreen = lazy(() => import('./screens/orderScreen'));
+const DashOrderList = lazy(() => import('./adminDashboard/pages/orderList/orderList'));
+const AboutScreen = lazy(() => import('./screens/aboutPage'));
+
+
 
 const App = () => {
   // const user = useSelector((state) => state.userLogin)
   return (
     <Router>
+      <ErrorBoundary>
+      <Suspense fallback={<Loader />}>
       <Routes>
-        
+      <Route exact path="/" element={<Home/>}/>
         {/* admin dashboard Routes */}
         <Route path='/admin-home' element={<AdminHome />}/>
         <Route path='/user/:userId' element={<UserProfileDash />} />
@@ -39,7 +46,7 @@ const App = () => {
         <Route path='/dash-product/:productId' element={<DashProduct />}/>
         <Route path='/dash-orders' element={<DashOrderList />} />
         {/* admin dashboard Routes end */}
-        <Route exact path="/" element={<Home/>}/>
+        
         <Route path='/success' element={<Success />} />
         <Route  path="/products/:category" element={<ProductList />}/>
         <Route path="/product/:id" element={ <SingleProduct /> }/>
@@ -53,11 +60,12 @@ const App = () => {
         <Route path='/order/:id' element={<OrderScreen />} />
         <Route path='/about-us' element={<AboutScreen />} />
       </Routes>
+      </Suspense>
+      </ErrorBoundary>
     </Router>
-    // <>
-    //   <Cart />
-    // </>
   )
 }
 
 export default App
+
+

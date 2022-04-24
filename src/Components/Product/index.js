@@ -1,5 +1,3 @@
-
-import { FavoriteBorderOutlined, SearchOutlined, ShoppingCartOutlined, StarRateOutlined, } from '@material-ui/icons'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Loader from '../loader/Loader'
@@ -13,7 +11,9 @@ const PopularProducts = ({product}) => {
           {
             product ?
             <div className='productWrapper'>
-            <img src={product.img} alt="Popular Products"/>
+            <Link to={`/product/${product._id}`}>
+                <img src={product.img} alt="Popular Products"/>
+            </Link>
             <div className='productWrapper-footer'>
               <div className='inner'>
                   <div className='ratings'>
@@ -22,23 +22,19 @@ const PopularProducts = ({product}) => {
                       value={product.avgRating}
                     />
                     </div>
-                    <div className='reviews'>
-                     
-                      <span>{product.numReviews} reviews</span>
-                     
-                      </div>
                   </div>
-                <div className='footer-icons'>
-                    <ShoppingCartOutlined/>
-                    <Link to={`/product/${product._id}`}>
-                        <SearchOutlined />
-                    </Link>
-                    <FavoriteBorderOutlined />
-                </div>
+                  <div className='reviews'>
+                     
+                     <span>{product.numReviews} reviews</span>
+                    
+                    </div>
               </div>
-             <div className='product-details-foot'>
-               <h4>{product.title}</h4>
-               <h4>£{product.price}</h4>
+              <div className='product-details-foot'>
+               <div className='foot-prod-name'><h4>{product.title}</h4></div>
+               {
+                 product.discount ? <div className='foot-prod-price disc-price'><h4>£{product.price}</h4> <h4>£{product.discoutPrice}</h4></div> :
+                   <div className='foot-prod-price'><h4>£{product.price}</h4></div>  
+               }
              </div>
             </div>
           </div>  :
