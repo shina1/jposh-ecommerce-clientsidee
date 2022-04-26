@@ -7,17 +7,17 @@ import { Link } from 'react-router-dom'
 import Loader from '../loader/Loader'
 
 
-const FilteredProducts = ({product}) => {
+const FilteredProductsByCategory = ({product}) => {
   console.log(product);
   return (
-        <div className='filteredProduct-container'>
+        <div className='filteredProduct-category-container'>
           {
             product ? 
-            <div className='productWrapper'>
+            <div className='productcategoryWrapper'>
                <Link to={`/product/${product._id}`}>
                     <img src={product.img} alt="filtered Products"/>  
                 </Link>
-            <div className='productWrapper-footer'>
+            <div className='productcategoryWrapper-footer'>
               <div className='inner'>
                   <div className='ratings'>
                     <div className='star-group'>
@@ -49,6 +49,6 @@ const FilteredProducts = ({product}) => {
   )
 }
 
-export default FilteredProducts
+export default FilteredProductsByCategory
 
 

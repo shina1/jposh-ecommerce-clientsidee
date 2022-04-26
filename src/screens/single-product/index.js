@@ -74,7 +74,7 @@ const SingleProduct = () => {
                 <p>
                     {product.desc}
                 </p>
-                <span>£ {product.discount ? Number(product.discoutPrice) : Number(product.price)}</span>
+                <span>£ {product.discount ? product.discoutPrice : product.price}</span>
                 <div className='filter-cotainer'>
                     <div className='color-filter filter-box'>
                         <select onChange={(e) => setColor(e.target.value)}>

@@ -89,16 +89,16 @@ const CategoryItem = ({category}) => {
   useEffect(() => {
     dispatch(listAllProducts())
   }, [dispatch])
-  const getCategoryNumber = () => {
-    let catNo = 0
-    products && products.map((product) => {
-      if(product.category.toLowerCase() === category.cat.toLowerCase()){
-       catNo = product.category.length
-       console.log(product.category);
-      }
-    })
-    return catNo
-  }
+  // const getCategoryNumber = () => {
+  //   let catNo = 0
+  //   products && products.map((product) => {
+  //     if(product.category.toLowerCase() === category.cat.toLowerCase()){
+  //      catNo = product.category.length
+  //      console.log(product.category);
+  //     }
+  //   })
+  //   return catNo
+  // }
   return (
     <Container>
             <Link to={`/products/${category.cat}`}>

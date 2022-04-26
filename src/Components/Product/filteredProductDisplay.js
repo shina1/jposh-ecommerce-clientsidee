@@ -7,6 +7,7 @@ import './style.css'
 import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../loader/Loader'
 import Message from '../message/Message'
+import FilteredProductsByCategory from './filteredProductByCategory'
 
 
 const Box = styledComponents.div`
@@ -59,7 +60,7 @@ const FilteredProductsDisp = ({category, filters, sort}) => {
       }
           {
             filteredProducts ? filteredProducts.map(product => (
-              <FilteredProducts product={product} key={product._id} />
+              <FilteredProductsByCategory product={product} key={product._id} />
             )) :
             <div className="loader-box">
             <Loader />
