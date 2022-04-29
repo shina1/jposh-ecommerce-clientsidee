@@ -31,7 +31,7 @@ const ProductList = () => {
   }
   return (
     <div className='container'>
-      <ResponsiveHeader />
+      {/* <ResponsiveHeader /> */}
       <div className='inner-container'>
         <div className='title'><h2>{category} Collections</h2></div>
         <div className='filter-container'>
@@ -70,7 +70,7 @@ const ProductList = () => {
       <FilteredProductsDisp  category={category} filters={filters} sort = {sort}/>
       <Products category={category} filters={filters} sort = {sort}/>
       <Newsletter />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   )
 }

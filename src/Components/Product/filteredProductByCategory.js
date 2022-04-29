@@ -6,17 +6,18 @@ import './filteredProducts.css'
 import { Link } from 'react-router-dom'
 import Loader from '../loader/Loader'
 
-
+// className='productContainer'
 const FilteredProductsByCategory = ({product}) => {
-  console.log(product);
   return (
         <div className='filteredProduct-category-container'>
           {
             product ? 
             <div className='productcategoryWrapper'>
-               <Link to={`/product/${product._id}`}>
+              <div className='productcategoryImgWrapper'>
+                <Link to={`/product/${product._id}`}>
                     <img src={product.img} alt="filtered Products"/>  
                 </Link>
+              </div>
             <div className='productcategoryWrapper-footer'>
               <div className='inner'>
                   <div className='ratings'>

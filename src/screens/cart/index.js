@@ -70,7 +70,7 @@ const Cart = () => {
   return (
       
     <main className='cart-main-cont'>
-        <ResponsiveHeader />
+        {/* <ResponsiveHeader /> */}
         <section className='cart-container'>
             <div className='title-container'><h2>Your Bag</h2></div>
             {/* <div className='cart-body'> */}
@@ -147,7 +147,7 @@ const Cart = () => {
                 </div>
             </div>
         </section>
-        <Footer />
+        {/* <Footer /> */}
     </main>
   )
 }

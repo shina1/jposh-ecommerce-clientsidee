@@ -62,7 +62,7 @@ const placeOrderHandler = () => {
 }
   return (
     <main className='palce-order-container'>
-      <ResponsiveHeader />
+      {/* <ResponsiveHeader /> */}
       <div className='place-order-inner-cont'>
             <div className='place-order-inner-left'>
                 <div className='place-order-title'>

@@ -98,29 +98,16 @@ export const categories = [
     },
     {
         id: 8,
-        img: slideImage2,
-        no: "310 items",
-        cat: "Bonnet cap",
-    },
-    {
-        id: 9,
-        img: Jumpsuits,
-        no: "9 items",
-        cat: "Braided head band ",
-    }
-    ,
-    {
-        id: 10,
-        img: slideImage3,
-        no: "13 items",
-        cat: "Sequins head band ",
-    },
-    {
-        id: 11,
         img: palazo,
-        no: "29 items",
-        cat: "Pallazo",
-    }
+        no: "310 items",
+        cat: "2pieces set",
+    },
+    // {
+    //     id: 11,
+    //     img: palazo,
+    //     no: "29 items",
+    //     cat: "Pallazo",
+    // }
 ]
 
 // Popular Products

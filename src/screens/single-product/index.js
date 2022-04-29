@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addProduct } from '../../store/cartStore'
 import { listProductDetails } from '../../actions/productActions';
 import { addToCart } from '../../actions/cartAction';
+import SingleProductReviewCarousel from '../../Components/reviewCarousel';
 
 const SingleProduct = () => {
     const location = useLocation()
@@ -54,10 +55,10 @@ const SingleProduct = () => {
 
   return (
     <div className='single-product-container'>
-        <ResponsiveHeader/>
+        {/* <ResponsiveHeader/> */}
         <section className='single-product-inner-container'>
             <div className='image-cont'>
-                <img src={product.img} alt='single product'/>
+                <SingleProductReviewCarousel mainImage={product.img} frontImage={product.img} backImage={product.img} />
                 {
                     product.video && 
                     <video controls autoPlay={true} muted playsInline >
@@ -70,11 +71,11 @@ const SingleProduct = () => {
                
             </div> */}
             <div className='product-desc'>
-                <h3>{product.title}</h3>
+                <h2>{product.title}</h2>
                 <p>
                     {product.desc}
                 </p>
-                <span>£ {product.discount ? product.discoutPrice : product.price}</span>
+                <h3>£ {product.discount ? product.discoutPrice : product.price}.00</h3>
                 <div className='filter-cotainer'>
                     <div className='color-filter filter-box'>
                         <select onChange={(e) => setColor(e.target.value)}>
@@ -109,7 +110,7 @@ const SingleProduct = () => {
         </section>
         <Products />
         <Newsletter />
-        <Footer />
+        {/* <Footer /> */}
     </div>
   )
 }

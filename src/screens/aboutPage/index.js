@@ -11,7 +11,7 @@ import jposhceo from "../../assets/images/ceo.jpeg"
 const AboutScreen = () => {
   return (
       <div>
-          <ResponsiveHeader />
+          {/* <ResponsiveHeader /> */}
           <main className='aboutscreen_container'>
         
         <div className='aboutscreen-inner'>
@@ -47,7 +47,7 @@ const AboutScreen = () => {
         </div>
     </main>
     <Newsletter />
-        <Footer />
+        {/* <Footer /> */}
       </div>
    
   )

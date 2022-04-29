@@ -11,9 +11,12 @@ const PopularProducts = ({product}) => {
           {
             product ?
             <div className='productWrapper'>
+            <div className='prod-img-wrapper'>
             <Link to={`/product/${product._id}`}>
                 <img src={product.img} alt="Popular Products"/>
             </Link>
+            </div>
+            
             <div className='productWrapper-footer'>
               <div className='inner'>
                   <div className='ratings'>

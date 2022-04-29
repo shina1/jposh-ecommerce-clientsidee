@@ -51,13 +51,13 @@ const ResponsiveHeader = () => {
             <a href="/">HOME</a>
           </li>
           <li className="option" onClick={closeMobileMenu}>
-            <a href="#cat">CATEGORIES</a>
+            <a href="/categories">CATEGORIES</a>
           </li>
           <li className="option" onClick={closeMobileMenu}>
-            <a href="#about">ABOUT</a>
+            <a href="/about-us">ABOUT</a>
           </li>
           <li className="option" onClick={closeMobileMenu}>
-            <Link to={"#contact"}>CONTACT</Link>
+            <Link to={"/contact"}>CONTACT</Link>
           </li>
           <li className="option mobile-option">
             <Link to={"/cart"} className="cart-icon">

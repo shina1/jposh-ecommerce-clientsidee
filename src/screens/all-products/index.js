@@ -27,7 +27,7 @@ const AllProductList = () => {
   }
   return (
     <div className='container'>
-      <ResponsiveHeader />
+      {/* <ResponsiveHeader /> */}
       <div className='inner-container'>
         <div className='title'><h2>All Collections</h2></div>
         <div className='filter-container'>
@@ -65,7 +65,7 @@ const AllProductList = () => {
       </div>
       <AllProductsComponent category={category} filters={filters} sort = {sort}/>
       <Newsletter />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   )
 }

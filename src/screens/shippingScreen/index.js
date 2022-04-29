@@ -25,7 +25,7 @@ const Shipping = () => {
     }
   return (
     <main className='shipping-container'>
-        <ResponsiveHeader />
+        {/* <ResponsiveHeader /> */}
         <div className='shipping-inner-container'>
             <div className='shipping-cont-title'><h2>SHIPPING</h2></div>
             <div className='shipping-form-cont'>
