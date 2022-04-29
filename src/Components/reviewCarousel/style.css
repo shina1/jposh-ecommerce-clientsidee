@@ -11,19 +11,32 @@
     overflow: scroll;
     height: 100px;
 }
-
+.single-product-review-carousel-container{
+    height: 100% !important;
+}
+.box{
+    height: 100% !important;
+}
+.box:nth-child(1){
+    height: 100% !important;
+}
+.carousel-image{
+    /* display: none !important; */
+    height: 100% !important;
+    object-fit: contain !important;
+}
 
 
 
 @media screen and (max-width: 560px) {
-    .single-product-review-carousel-container{
+    /* .single-product-review-carousel-container{
         height: 100vh;
-    }
-    .box{
+    } */
+    /* .box{
         height: 100% !important;
-    }
+    } */
     .box :nth-child(1){
-        max-height: 85% !important;
+        max-height: 100% !important;
     }
     .carousel-container{
         /* height: 100% !important; */
@@ -34,8 +47,8 @@
     } */
     .carousel-image{
         /* display: none !important; */
-        height: 100vh !important;
-        object-fit: cover !important;
+        height: 100% !important;
+        object-fit: contain !important;
     }
     .carousel-caption-bottom{
         /* display: none !important; */

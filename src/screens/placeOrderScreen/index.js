@@ -104,6 +104,15 @@ const placeOrderHandler = () => {
                     <hr />
                     <div className='box-det'>
                         <h3>ORDER ITEMS</h3>
+                        {
+                           cart.cartItems &&  cart.cartItems.map((item) => {
+                           return <div className='placeOrdeItems' key={item._id}>
+                                <img src={item.image} alt={item.name} />
+                                <div><h4>{item.name}</h4></div>
+                                <div><h4> {`${item.qty} x ${item.price}`} = {item.qty * item.price} </h4></div>
+                            </div>
+                        })
+                        }
                         
                     </div>
                 </div>

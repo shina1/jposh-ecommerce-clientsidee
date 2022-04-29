@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js"
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { createOrder, deliverOrder, getOrderDetails, payOrder,  } from '../../actions/orderActions'
@@ -15,7 +16,7 @@ import OpenNotificationWithIcon from '../../Components/Notification'
 import Loader from '../../Components/loader/Loader'
 import { Alert } from 'antd'
 const {REACT_APP_JPOSH_STRIPE_TEST_KEY , REACT_APP_JPOSH_STRIPE_KEY, NODE_ENV } = process.env;
-const KEY = REACT_APP_JPOSH_STRIPE_TEST_KEY;
+const KEY = REACT_APP_JPOSH_STRIPE_KEY;
 
 
 const OrderScreen = () => {
@@ -192,6 +193,7 @@ const onToken = (token) => {
                                  amount={order && order.totalPrice * 100}
                                  token={onToken}
                                  stripeKey={KEY}
+                                 currency='gbp'
                             >
                                     <button className='placeorder-btn'>
                                         Make Payment
