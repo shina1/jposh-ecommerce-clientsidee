@@ -33,18 +33,30 @@
     padding: 0 50px;
 }
 
-.product-desc h3{
-  font-weight: 200;
-  font-size: 2rem;
+.product-desc h2{
+    color: hsl(0, 0%, 0%);
+    font-size: 2.13rem;
+    font-weight: 600;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
 }
 .product-desc p{
-    margin: 20px 0;
-    font-size: 1.1rem;
+    /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+    font-size: 14px;
+    font-weight: 400;
+    color: #000;
+    opacity: 75%;
+    font-weight: 500;
+    letter-spacing: 1.5px;
 }
-.product-desc span{
-    margin: 20px 0;
-    font-size: 40px;
-    font-weight: 100;
+.product-desc h3{
+    color: hsl(0, 0%, 0%);
+    font-size: 2.13rem;
+    font-weight: 600;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 1.1px;
 }
 
 .filter-cotainer{
@@ -57,7 +69,7 @@
 }
 .filter-box{
     margin: 0 20px;
-    width: 30%;
+    width: 50%;
 }
 .filter-cotainer .filter-box select{
     width: 100%;
@@ -67,9 +79,10 @@
 }
 
 .addContainer{
-    width: 70%;
+    width: 100%;
     display: flex;
-    height: 10vh;
+    flex-direction: column;
+    height: 30vh;
     justify-content: space-between;
     align-items: center;
     padding: 0 10px;
@@ -78,11 +91,13 @@
     border: none;
     background: rgba(191, 149, 33, 0.95);
     color: #fff;
-    padding: 5px 10px;
+    padding:10px;
     border-radius: 10px;
-    font-weight: 300;
+    font-weight: 600;
     cursor: pointer;
-    height: 70%;
+    height: 30%;
+    width: 50%;
+    margin: 0 auto;
 }
 .add-to-cart:hover{
     background-color: #fff;
@@ -92,6 +107,9 @@
 .amount-container{
     display: flex;
     align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 50%;
 }
 .amount-container .MuiSvgIcon-root{
     margin: 0 20px;
@@ -115,11 +133,13 @@
         padding: 10px 5px;
         margin:10px auto;
         height: auto;
+        /* text-align: center; */
     }
     .image-cont{
         width: 100%;
         padding: 5px;
         margin: 10px auto;
+        height: 70vh;
     }
     .image-cont img{
         width: 100%;
@@ -130,29 +150,43 @@
 
     .product-desc{
         width: 100%;
-        padding: 5px;
+        padding: 5px 10px;
         margin: 10px auto;
         height: auto;
     }
-    .product-desc h3{
-        font-size: 1.5rem;
-        font-weight: bolder;
+    .product-desc h2{
+        color: hsl(0, 0%, 0%);
+        font-size: 2.23rem;
+        font-weight: 700;
         text-align: left;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
     }
     .product-desc p{
-        font-size: 1rem;
-        font-weight: bold;
+        font-family: sans-serif;
+        font-size: 1.89rem;
+        font-weight: 400;
+        color: hsl(219, 9%, 45%);
+        letter-spacing: 1.5px;
+    }
+    .product-desc h3{
+        color: hsl(0, 0%, 0%);
+        font-size: 2.23rem;
+        font-weight: 700;
+        text-align: left;
+        text-transform: uppercase;
+        letter-spacing: 1.1px;
     }
     .filter-cotainer{
-        width: 50%;
+        width: 100%;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         margin: 0 auto;
         height: auto;
     }
     .filter-box{
         width: 50%;
-        margin: 20px auto;
+        margin: 20px 5px;
     }
     .filter-cotainer .filter-box select{
        font-weight: bold;
@@ -161,21 +195,30 @@
     .addContainer{
         width: 100%;
         display: flex;
+        flex-direction: column;
         justify-content: space-between;
+        align-items: center;
         padding: 5px 10px;
-        height: 10vh;
+        height: 30vh;
     }
     .add-to-cart{
-        padding: 5px 10px;
+        padding: 10px;
         font-weight: bold;
         cursor: pointer;
+        width: 100%;
+        margin: 10px auto;
+        text-align: center;
+        align-items: center;
+        height: 70px;
     }
     .amount-container{
-        width: 50%;
+        width: 100%;
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
+        margin: 10px auto;
+        height: 50%;
     }
     .amount-container .MuiSvgIcon-root{
         margin: 0 10px;

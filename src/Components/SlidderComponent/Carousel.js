@@ -13,9 +13,10 @@ const CarouselSlider = () => {
         <Carousel autoplay effect="fade">
         {
             sliderItems.map(item => (
+                // <div key={item.id} className="content-style">
                 <div key={item.id} className="content-style">
                     <div className='img-container'>
-                        <img src={item.img} alt='slidder'/>
+                        <img src={item.img} alt='slidder' style={{"height": "100%"}}/>
                     </div>
                     <div className='text-container'>
                         <h1>{item.title}</h1>

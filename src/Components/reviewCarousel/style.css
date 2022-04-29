@@ -1,0 +1,43 @@
+/* .box{
+    
+
+    
+} */
+
+.thumbnails {
+    display: flex;
+    margin-top: 10px;
+    align-items: center;
+    overflow: scroll;
+    height: 100px;
+}
+
+
+
+
+@media screen and (max-width: 560px) {
+    .single-product-review-carousel-container{
+        height: 100vh;
+    }
+    .box{
+        height: 100% !important;
+    }
+    .box :nth-child(1){
+        max-height: 85% !important;
+    }
+    .carousel-container{
+        /* height: 100% !important; */
+    }
+    /* .carousel-item{
+        background-color: green !important;
+        height:  100% !important;
+    } */
+    .carousel-image{
+        /* display: none !important; */
+        height: 100vh !important;
+        object-fit: cover !important;
+    }
+    .carousel-caption-bottom{
+        /* display: none !important; */
+    }
+}

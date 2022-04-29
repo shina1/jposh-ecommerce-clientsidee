@@ -99,7 +99,7 @@ const onToken = (token) => {
 
   return (
         <main className='palce-order-container'>
-      <ResponsiveHeader />
+      {/* <ResponsiveHeader /> */}
       {
           loading && <Loader />
       }

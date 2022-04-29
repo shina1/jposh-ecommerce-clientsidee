@@ -25,7 +25,7 @@ const PaymentMethod = () => {
  
   return (
    <main className='payment-method-container'>
-       <ResponsiveHeader />
+       {/* <ResponsiveHeader /> */}
         <div className='payment-method-inner-container'>
             <div className='payment-method-title'><h2>PAYMENT METHOD</h2></div>
             <Radio.Group  defaultValue={'stripe'}>

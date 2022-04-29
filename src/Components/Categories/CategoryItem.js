@@ -1,30 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { listAllProducts } from '../../actions/productActions'
 import { devices } from '../../assets/screenSizes'
-import Message from '../message/Message';
-import Loader from '../loader/Loader';
+
 
 const Container = styled.div`
 flex:2;
-margin:10px 3;
-height:50vh;
+margin:10px 5px;
+height:55vh;
 position: relative;
 cursor: pointer;
 
 @media ${devices.mobileL} {
  width: 100%;
- height: auto;
+ height: 50vh;
 }
 `
 const Image = styled.img`
+dislay:block;
 width:100%;
-height:100%;
-object-fit: fill;
+max-height:100%;
+object-fit: cover;
 `
 const InfoCont = styled.div`
 position: absolute;
@@ -89,16 +87,6 @@ const CategoryItem = ({category}) => {
   useEffect(() => {
     dispatch(listAllProducts())
   }, [dispatch])
-  // const getCategoryNumber = () => {
-  //   let catNo = 0
-  //   products && products.map((product) => {
-  //     if(product.category.toLowerCase() === category.cat.toLowerCase()){
-  //      catNo = product.category.length
-  //      console.log(product.category);
-  //     }
-  //   })
-  //   return catNo
-  // }
   return (
     <Container>
             <Link to={`/products/${category.cat}`}>

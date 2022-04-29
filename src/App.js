@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 import Loader from './Components/loader/Loader';
 import ErrorBoundary from "./Components/errorBoundary/index";
+import ResponsiveHeader from './Components/Header-component/ResponsiveHeader';
+import Footer from './Components/Footer';
 const Home = lazy(() => import('./screens/home-screen'));
 const SingleProduct = lazy(() => import('./screens/single-product'));
 const ProductList = lazy(() => import('./screens/product-list/index.js'));
@@ -25,6 +27,7 @@ const PlaceOrderScreen  = lazy(() => import('./screens/placeOrderScreen'));
 const OrderScreen = lazy(() => import('./screens/orderScreen'));
 const DashOrderList = lazy(() => import('./adminDashboard/pages/orderList/orderList'));
 const AboutScreen = lazy(() => import('./screens/aboutPage'));
+const Categories = lazy(() => import('./Components/Categories/index'))
 
 
 
@@ -34,6 +37,7 @@ const App = () => {
     <Router>
       <ErrorBoundary>
       <Suspense fallback={<Loader />}>
+      <ResponsiveHeader />
       <Routes>
       <Route exact path="/" element={<Home/>}/>
         {/* admin dashboard Routes */}
@@ -59,7 +63,9 @@ const App = () => {
         <Route path='/placeoder' element={<PlaceOrderScreen />} />
         <Route path='/order/:id' element={<OrderScreen />} />
         <Route path='/about-us' element={<AboutScreen />} />
+        <Route path='/categories' element={<Categories />} />
       </Routes>
+      <Footer />
       </Suspense>
       </ErrorBoundary>
     </Router>
