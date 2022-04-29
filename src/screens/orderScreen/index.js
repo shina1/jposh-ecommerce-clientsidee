@@ -16,7 +16,7 @@ import OpenNotificationWithIcon from '../../Components/Notification'
 import Loader from '../../Components/loader/Loader'
 import { Alert } from 'antd'
 const {REACT_APP_JPOSH_STRIPE_TEST_KEY , REACT_APP_JPOSH_STRIPE_KEY, NODE_ENV } = process.env;
-const KEY = REACT_APP_JPOSH_STRIPE_KEY;
+const KEY = REACT_APP_JPOSH_STRIPE_TEST_KEY;
 
 
 const OrderScreen = () => {
@@ -29,7 +29,6 @@ const OrderScreen = () => {
     const user = useSelector((state) => state.userLogin);
     const cart = useSelector((state) => state.cart);
     const orderPay = useSelector((state) => state.orderPay)
-    console.log(orderPay)
     const orderDeliver = useSelector((state) => state.orderDelivery)
    const {loading, order, error} = useSelector((state) => state.orderDetails);
  
@@ -53,10 +52,6 @@ cart.totalPrice = (
 ).toFixed(2)
 
 
-const onClose = (e) => {
-    console.log(e, 'I was closed.');
-  };
-
 const onToken = (token) => {
     setStripeToken(token)
 }
@@ -70,10 +65,10 @@ const onToken = (token) => {
         if(stripeToken){
              await axios.post(`https://ancient-beach-60604.herokuapp.com/api/v1/checkout/payment`, {headers, stripeToken, amount: order.totalPrice, product: order.orderItems})
         .then(response => {
+            console.log(response)
             const {status} = response
             if(response.status === 200){
                dispatch(payOrder(id, response))
-               
             }
         })
         .catch(err => {
@@ -193,7 +188,7 @@ const onToken = (token) => {
                                  amount={order && order.totalPrice * 100}
                                  token={onToken}
                                  stripeKey={KEY}
-                                 currency='gbp'
+                                 currency='GBP'
                             >
                                     <button className='placeorder-btn'>
                                         Make Payment

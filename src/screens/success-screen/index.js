@@ -1,40 +1,46 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { userRequest } from '../../utils/requestMethods';
 import successImg from "../../assets/vectors/success.jpg"
 import "./style.css"
 
 const Success = () => {
-    const location = useLocation()
+    const navigate = useNavigate();
+    const {id} = useParams();
     
   //  recieve stripeData and cart data from the payment page
   const [orderId, setOrderId] = useState('');
-  const data = location.state.data;
-  const cart = location.state.cart;
-  const currentUser = useSelector((state) => state.user.currentUser);
-  
+
   useEffect(() => {
-    const createOrder = async() => {
-      try {
-          const res = await userRequest.post("/order", {
-            userId: currentUser._id,
-            products: cart.products.map((cartItem) => (
-              {
-                productId: cartItem._id,
-                quantity: cartItem.quantity,
-              }
-            )),
-            amount: cart.total,
-            address: data.billing_details.address,
-          });
-          setOrderId(res.data._id);
-      } catch (error) {
-        throw new Error(error)
-      }
-    }
-    data && createOrder();
-  }, [cart, data, currentUser])
+    setOrderId(id)
+  }, [id])
+  // const data = location.state.data;
+  // const cart = location.state.cart;
+  const currentUser = useSelector((state) => state.user.userDetials);
+  console.log(currentUser)
+  
+  // useEffect(() => {
+  //   const createOrder = async() => {
+  //     try {
+  //         const res = await userRequest.post("/order", {
+  //           userId: currentUser._id,
+  //           products: cart.products.map((cartItem) => (
+  //             {
+  //               productId: cartItem._id,
+  //               quantity: cartItem.quantity,
+  //             }
+  //           )),
+  //           amount: cart.total,
+  //           address: data.billing_details.address,
+  //         });
+  //         setOrderId(res.data._id);
+  //     } catch (error) {
+  //       throw new Error(error)
+  //     }
+  //   }
+  //   data && createOrder();
+  // }, [cart, data, currentUser])
    
   return (
     <main className='success-container'>

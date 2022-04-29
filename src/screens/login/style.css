@@ -81,6 +81,7 @@
 
 @media screen and (max-width: 560px) {
     .login-form-container{
+        max-width: 100%;
         width: 100%;
         text-align: center;
     }
@@ -100,6 +101,7 @@
 @media screen and (max-width: 768px) {
     .login-form-container{
         width: 100%;
+        max-width: 100%;
         text-align: center;
     }
     .login-main-cont{
@@ -121,6 +123,7 @@
     }
     .login-form-container{
         width: 100%;
+        max-width: 100%;
         text-align: center;
     }
     .login-form-container input{
