@@ -31,7 +31,7 @@ const SingleProduct = () => {
     const {loading, product, error} = productDetails
     useEffect(() => {
         dispatch(listProductDetails(id))
-    }, [dispatch])
+    }, [dispatch, id])
     
     const handleQuantity = (param) => {
         if(param === "inc"){
@@ -52,6 +52,9 @@ const SingleProduct = () => {
               'Item added to cart. Proceed to payment or continue shopping!',
           });   
     }
+    useEffect(()=> {
+        window.scrollTo(0, 0)
+    }, [id])
 
   return (
     <div className='single-product-container'>

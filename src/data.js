@@ -6,10 +6,6 @@ import slideImage3 from './assets/images/slider-image16.jpeg'
 
 import slideImageCat1 from './assets/images/women-cat1.jpeg'
 import slideImageCat2 from './assets/images/slider-image3.jpg'
-import slideImageCat3 from './assets/images/slider-image10.jpg'
-import slideImageCat4 from './assets/images/slider-image6.jpg'
-import slideImageCat5 from './assets/images/slider-image10.jpg'
-import slideImageCat6 from './assets/images/slider-image15.jpg'
 import slideImageCat7 from './assets/images/slider-image12.jpg'
 import slideImageCat9 from './assets/images/slider-image7.jpg'
 import slideImageCat10 from './assets/images/slider-image5.jpg'
@@ -39,7 +35,7 @@ export const sliderItems = [
         id: 2,
         img: slideImage2,
         title: "READY TO WEAR OUTFITS",
-        desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
+        desc: "TAILORED JUST FOR YOU!",
         bg: "#EFE6E5"
     },
     {

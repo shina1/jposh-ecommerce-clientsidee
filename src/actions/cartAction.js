@@ -1,11 +1,12 @@
 import axios from "axios";
 import { CART_ADD_ITEM, CART_REMOVE_ITEM, CART_SAVE_PAYMENT_METHOD, CART_SAVE_SHIPPING_ADDRESS } from "../constants/cartConstant";
+import { PRODUCTION_BASE_URL } from "../utils/requestMethods";
 
 
 
 export const addToCart = (id, qty, color, size) => async(dispatch, getState) => {
  
-  const {data} = await axios.get(`https://ancient-beach-60604.herokuapp.com/api/v1/products/find/${id}`)
+  const {data} = await axios.get(`${PRODUCTION_BASE_URL}products/find/${id}`)
   
     dispatch({
         type: CART_ADD_ITEM,

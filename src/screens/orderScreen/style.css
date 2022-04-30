@@ -75,3 +75,24 @@
     height: 50px;
 }
 
+
+@media screen and (max-width:576px) {
+    .place-order-inner-cont{
+        display: flex;
+        width: 100%;
+        margin: 0 auto;
+        flex-direction: column;
+    }
+    
+    .place-order-inner-left{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin: 10px auto;
+        padding: 5px;
+    }
+    .place-order-inner-right{
+        width: 100%;
+        margin: 10px auto;
+    }
+}

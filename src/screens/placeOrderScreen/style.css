@@ -76,3 +76,22 @@
     height: 50px;
 }
 
+@media screen and (max-width: 560px) {
+    .place-order-inner-cont{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    .place-order-inner-left{
+        width: 100%;
+        margin: 0 auto;
+    }
+    .place-order-inner-right{
+        width: 100%;
+        margin: 0 auto;
+    }
+}
+
+

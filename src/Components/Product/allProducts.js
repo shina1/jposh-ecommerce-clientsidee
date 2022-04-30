@@ -30,7 +30,7 @@ const AllProductsComponent = ({category, filters, sort}) => {
 
   return (
     <Box>
-      <Divider section={'LATEST FASHION'} />
+      {/* <Divider section={'LATEST FASHION'} /> */}
         <div className='productContainer'>
           {
             loading && <div className="loader-box">

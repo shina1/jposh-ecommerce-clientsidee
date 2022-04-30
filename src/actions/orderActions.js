@@ -1,6 +1,8 @@
 import axios from "axios";
 import { CART_CLEAR_ITEMS } from "../constants/cartConstant";
 import { ORDER_ANALYSIS_FAIL, ORDER_ANALYSIS_REQUEST, ORDER_ANALYSIS_SUCCESS, ORDER_CREATE_FAIL, ORDER_CREATE_REQUEST, ORDER_CREATE_SUCCESS, ORDER_DELIVER_FAIL, ORDER_DELIVER_REQUEST, ORDER_DELIVER_SUCCESS, ORDER_DETAILS_FAIL, ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS, ORDER_LIST_FAIL, ORDER_LIST_MY_FAIL, ORDER_LIST_MY_REQUEST, ORDER_LIST_MY_SUCCESS, ORDER_LIST_NEW_FAIL, ORDER_LIST_NEW_REQUEST, ORDER_LIST_NEW_SUCCESS, ORDER_LIST_REQUEST, ORDER_LIST_SUCCESS, ORDER_PAY_FAIL, ORDER_PAY_REQUEST, ORDER_PAY_SUCCESS } from "../constants/orderConstants";
+import { LOCAL_BASE_URL, PRODUCTION_BASE_URL } from "../utils/requestMethods";
+
 
 
 import { logout } from "./userActions";
@@ -24,7 +26,7 @@ export const createOrder = (order) => async(dispatch, getState) =>{
             },
         }
 
-        const {data} = await axios.post("https://ancient-beach-60604.herokuapp.com/api/v1/order/", order, config)
+        const {data} = await axios.post(`${PRODUCTION_BASE_URL}order/`, order, config)
         
         dispatch({
             type: ORDER_CREATE_SUCCESS,
@@ -67,7 +69,7 @@ export const getOrderDetails = (id) => async(dispatch, getState) => {
             },
         }
 
-        const { data } = await axios.get(`https://ancient-beach-60604.herokuapp.com/api/v1/order/${id}`, config)
+        const { data } = await axios.get(`${PRODUCTION_BASE_URL}order/${id}`, config)
 
         dispatch({
             type: ORDER_DETAILS_SUCCESS,
@@ -106,8 +108,11 @@ export const payOrder = (orderId, paymentResult) => async(dispatch, getState) =>
                 Authorization: `Bearer ${userInfo.token}`,
             },
         }
+        // https://ancient-beach-60604.herokuapp.com/api/v1/order/${orderId}/pay
+        const { data } = await axios.put(`${PRODUCTION_BASE_URL}order/${orderId}/pay`, paymentResult, config)
 
-        const { data } = await axios.put(`https://ancient-beach-60604.herokuapp.com/api/v1/order/${orderId}/pay`, paymentResult, config)
+        console.log(data)
+
         dispatch({
             type: ORDER_PAY_SUCCESS,
             payload: data,
@@ -146,7 +151,7 @@ export const deliverOrder = (order) => async (dispatch, getState) => {
       }
   
       const { data } = await axios.put(
-        `https://ancient-beach-60604.herokuapp.com/api/orders/${order._id}/deliver`,
+        `${PRODUCTION_BASE_URL}orders/${order._id}/deliver`,
         {},
         config
       )
@@ -188,7 +193,7 @@ export const deliverOrder = (order) => async (dispatch, getState) => {
         },
       }
   
-      const { data } = await axios.get(`https://ancient-beach-60604.herokuapp.com/api/v1/order/findall`, config)
+      const { data } = await axios.get(`${PRODUCTION_BASE_URL}order/findall`, config)
   
       dispatch({
         type: ORDER_LIST_MY_SUCCESS,
@@ -226,7 +231,7 @@ export const deliverOrder = (order) => async (dispatch, getState) => {
         },
       }
   
-      const { data } = await axios.get(`https://ancient-beach-60604.herokuapp.com/api/v1/order/findall`, config)
+      const { data } = await axios.get(`${PRODUCTION_BASE_URL}order/findall`, config)
   
       dispatch({
         type: ORDER_LIST_SUCCESS,
@@ -264,7 +269,7 @@ export const deliverOrder = (order) => async (dispatch, getState) => {
         },
       }
   
-      const { data } = await axios.get(`https://ancient-beach-60604.herokuapp.com/api/v1/order/findall?new=true`, config)
+      const { data } = await axios.get(`${PRODUCTION_BASE_URL}order/findall?new=true`, config)
   
       dispatch({
         type: ORDER_LIST_NEW_SUCCESS,
@@ -301,7 +306,7 @@ export const deliverOrder = (order) => async (dispatch, getState) => {
           Authorization: `Bearer ${userInfo.token}`,
         },
       }
-      const { data } = await axios.get("https://ancient-beach-60604.herokuapp.com/api/v1/order/income", config);
+      const { data } = await axios.get(`${PRODUCTION_BASE_URL}order/income`, config);
 
       dispatch({
         type: ORDER_ANALYSIS_SUCCESS,

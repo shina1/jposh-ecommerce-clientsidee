@@ -71,7 +71,7 @@ const ResponsiveHeader = () => {
       <ul className="signin-up">
         {
             userInfo !== null && (
-              userInfo.isAdmin === true ? ( <li>
+              userInfo && userInfo.isAdmin === true ? ( <li>
                 <Select defaultValue={userInfo.name} style={{ width: 100 }} className="option" >
                   <Option key={1}> <Link to='/admin-home'>Admin</Link></Option>
                   <Option key={2}><button onClick={logoutHandler}>Logout</button></Option>

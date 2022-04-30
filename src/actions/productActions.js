@@ -1,12 +1,13 @@
 import axios from "axios";
 import {PORPULAR_PRODUCT_LIST_FAIL, PORPULAR_PRODUCT_LIST_REQUEST, PORPULAR_PRODUCT_LIST_SUCCESS, PRODUCT_CATEGORY_LIST_FAIL, PRODUCT_CATEGORY_LIST_REQUEST, PRODUCT_CATEGORY_LIST_SUCCESS, PRODUCT_CREATE_FAIL, PRODUCT_CREATE_REQUEST, PRODUCT_CREATE_REVIEW_FAIL, PRODUCT_CREATE_REVIEW_REQUEST, PRODUCT_CREATE_REVIEW_SUCCESS, PRODUCT_CREATE_SUCCESS, PRODUCT_DELETE_FAIL, PRODUCT_DELETE_REQUEST, PRODUCT_DELETE_SUCCESS, PRODUCT_DETAILS_FAIL, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_TOP_FAIL, PRODUCT_TOP_REQUEST, PRODUCT_TOP_SUCCESS, PRODUCT_UPDATE_FAIL, PRODUCT_UPDATE_REQUEST, PRODUCT_UPDATE_SUCCESS} from "../constants/productConstants";
+import { PRODUCTION_BASE_URL } from "../utils/requestMethods";
 import { logout } from "./userActions";
 
 // keyword = '', pageNumber = ''
 export const listAllProducts = () => async(dispatch) => {
     try {
         dispatch({type: PRODUCT_LIST_REQUEST})
-        const {data} = await axios.get('https://ancient-beach-60604.herokuapp.com/api/v1/products/')
+        const {data} = await axios.get(`${PRODUCTION_BASE_URL}products/`)
 
         dispatch({
             type: PRODUCT_LIST_SUCCESS,
@@ -28,7 +29,7 @@ export const listAllProducts = () => async(dispatch) => {
 export const listProductDetails = (id) => async(dispatch) => {
     try {
         dispatch({type: PRODUCT_DETAILS_REQUEST})
-        const {data} = await axios.get(`https://ancient-beach-60604.herokuapp.com/api/v1/products/find/${id}`)
+        const {data} = await axios.get(`${PRODUCTION_BASE_URL}products/find/${id}`)
         dispatch({
             type: PRODUCT_DETAILS_SUCCESS,
             payload : data,
@@ -50,7 +51,7 @@ export const listPorpularProducts = () => async(dispatch) => {
         try {
             dispatch({type: PORPULAR_PRODUCT_LIST_REQUEST})
 
-            const {data} = await axios.get("https://ancient-beach-60604.herokuapp.com/api/v1/products/porpular")
+            const {data} = await axios.get(`${PRODUCTION_BASE_URL}products/porpular`)
             
             dispatch({
                 type:  PORPULAR_PRODUCT_LIST_SUCCESS,
@@ -74,7 +75,7 @@ export const listProductByCategory = (category) => async(dispatch) => {
     try {
         dispatch({type: PRODUCT_CATEGORY_LIST_REQUEST})
 
-        const {data} = await axios.get(category ? `https://ancient-beach-60604.herokuapp.com/api/v1/products?category=${category.toLowerCase()}` : "http://localhost:2600/api/v1/products" )
+        const {data} = await axios.get(category ? `${PRODUCTION_BASE_URL}products?category=${category.toLowerCase()}` : `${PRODUCTION_BASE_URL}products` )
 
         dispatch({
             type: PRODUCT_CATEGORY_LIST_SUCCESS,
@@ -109,7 +110,7 @@ export const createProduct = (product) => async(dispatch, getState) => {
             }
         }
 
-        const { data } = await axios.post(`https://ancient-beach-60604.herokuapp.com/api/v1/products/`, product, config)
+        const { data } = await axios.post(`${PRODUCTION_BASE_URL}products/`, product, config)
 
         dispatch({
             type: PRODUCT_CREATE_SUCCESS,
@@ -145,7 +146,7 @@ export const updateProduct = (product, productId) => async (dispatch, getState) 
             },
           }
 
-          const {data} = await axios.put(`https://ancient-beach-60604.herokuapp.com/api/v1/products/edit/${productId}`, product, config)
+          const {data} = await axios.put(`${PRODUCTION_BASE_URL}products/edit/${productId}`, product, config)
           dispatch({
               type: PRODUCT_UPDATE_SUCCESS,
               payload: data
@@ -190,7 +191,7 @@ export const createProductReview = (productId, review) => async (
         },
       }
   
-      await axios.post(`https://ancient-beach-60604.herokuapp.com/api/v1/products/${productId}/reviews`, review, config)
+      await axios.post(`${PRODUCTION_BASE_URL}products/${productId}/reviews`, review, config)
   
       dispatch({
         type: PRODUCT_CREATE_REVIEW_SUCCESS,
@@ -214,7 +215,7 @@ export const createProductReview = (productId, review) => async (
     try {
       dispatch({ type: PRODUCT_TOP_REQUEST })
   
-      const { data } = await axios.get(`https://ancient-beach-60604.herokuapp.com/api/v1/products/top`)
+      const { data } = await axios.get(`${PRODUCTION_BASE_URL}products/top`)
   
       dispatch({
         type: PRODUCT_TOP_SUCCESS,
@@ -249,7 +250,7 @@ export const createProductReview = (productId, review) => async (
         },
       }
   
-      await axios.delete(`https://ancient-beach-60604.herokuapp.com/api/v1/products/delete/${id}`, config)
+      await axios.delete(`${PRODUCTION_BASE_URL}products/delete/${id}`, config)
   
       dispatch({
         type: PRODUCT_DELETE_SUCCESS,
