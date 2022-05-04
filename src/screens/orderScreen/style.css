@@ -74,7 +74,16 @@
     max-width: 50px;
     height: 50px;
 }
-
+.view-order-btn{
+    padding: 10px;
+    margin: 10px;
+    border: none;
+    background: #C09621;
+    color: #fff;
+    font-size: 13px;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
 @media screen and (max-width:576px) {
     .place-order-inner-cont{

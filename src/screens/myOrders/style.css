@@ -1,0 +1,20 @@
+.my-orders-cont{
+    margin: 20px auto;
+    padding: 20px 10px;
+    width: 95%;
+    height: 100vh !important;
+}
+.orderListDelete{
+    color: red;
+    cursor: pointer;
+}
+@media screen and (max-width:576px) {
+    .my-orders-cont{
+
+        margin: 20px auto;
+        padding: 10px;
+        width: 100%;
+        height: 100vh !important;
+    }
+}
+

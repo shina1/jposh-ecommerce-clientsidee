@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js"
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Modal, Button, Space } from 'antd';
 import { createOrder, deliverOrder, getOrderDetails, payOrder,  } from '../../actions/orderActions'
 import ResponsiveHeader from '../../Components/Header-component/ResponsiveHeader'
 import { ORDER_CREATE_RESET, ORDER_DELIVER_RESET, ORDER_PAY_RESET } from '../../constants/orderConstants'
 import { USER_DETAILS_RESET } from '../../constants/userConstants'
 import Message from '../../Components/message/Message'
+import logo from '../../assets/images/logo.ico'
 
 import "./style.css"
 // import { CardElement, Elements, useElements, useStripe } from '@stripe/react-stripe-js'
@@ -53,6 +55,22 @@ cart.totalPrice = (
     Number(cart.itemsPrice)
 ).toFixed(2)
 
+// modal for displaying success payment
+function info() {
+    Modal.info({
+      title: 'Payment succesfull',
+      content: (
+        <div>
+          <p>Order has been created successfully. Your order number is <span style={{"color" : "#1890ff"}}>{id}</span>
+          </p>
+          <p>
+              Thanks for shopping with us.
+          </p>
+        </div>
+      ),
+      onOk() {},
+    });
+  }
 
 const onToken = (token) => {
     setStripeToken(token)
@@ -67,11 +85,11 @@ const onToken = (token) => {
         if(stripeToken){
              await axios.post(`${PRODUCTION_BASE_URL}checkout/payment`, {headers, stripeToken, amount: order.totalPrice, product: order.orderItems})
         .then(response => {
-            console.log(response)
-            const {status} = response
+            if(!response){ return <Loader />}
             if(response.status === 200){
                dispatch(payOrder(id, response))
                setIsOrderPaid(true)
+               info()
             }
         })
         .catch(err => {
@@ -127,11 +145,14 @@ const onToken = (token) => {
                                 {cart && cart.shippingAddress.country}
                                 </span>
                             </h4>
-                           <div>
+                            <div>
                            {
-                               order &&  order.isDelivered ? <Message type={'success'} message={`Order delivered on : ${order.updatedAt.substring(0, 16)}`}/> : <Message type={'error'} message={`Not yet delivered`} />
+                            order && isOrderPaid ?<div> <Message type={'success'} message={`Payment succesfull`}/>
+                            <Link to='/my-orders'>
+                                <button className='view-order-btn'>View Your Orders</button></Link>
+                             </div>: <Message type={'error'} message={`Not yet paid`} />
                             }
-                           </div>
+                        </div>
                         </div>
                     </div>
                     <hr />
@@ -145,13 +166,7 @@ const onToken = (token) => {
                                    <h4>Click to select a payment method</h4>
                                </Link>
                            }
-                        </div>
-                        <div>
-                           {
-                            order && isOrderPaid ? <Message type={'success'} message={`Payment succesfull`}/> : <Message type={'error'} message={`Not yet paid`} />
-                            }
-                           </div>
-                        
+                        </div> 
                     </div>
                     <hr />
                     <div className='box-det'>
@@ -181,7 +196,7 @@ const onToken = (token) => {
                     <h4>Total Price</h4> <span>{order && order.totalPrice}</span>
                 </div>
                 {
-                    order ?  <div className='card'>
+                    order &&   <div className='card'>
                             {/* stripe checkout button */}
                                
                             <StripeCheckout 
@@ -198,10 +213,6 @@ const onToken = (token) => {
                                     </button>
                             </StripeCheckout>
                     </div>
-                    :
-                    <button className='placeorder-btn' onClick={deliverHandler}>
-                        Mark as delivered
-                    </button>
                 }
                 
             </div>

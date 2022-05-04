@@ -1,4 +1,4 @@
-.product-list-dash-container{
+.order-list-dash-container{
     display: flex;
     margin-top: 10px;
 }
@@ -6,7 +6,12 @@
     flex: 4;
     margin-top: 10px;
 }
-
+.loader-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
 .orderListItem{
     display: flex;
     align-items: center;
@@ -36,6 +41,12 @@
     cursor: pointer;
 }
 
-.orderAddButton{
-    margin:20px auto;
+.orderAddButton {
+    margin: 20px auto;
+    padding: 5px 10px;
+    border: none;
+    color: #fff;
+    background: #000;
+    border-radius: 5px;
+    cursor: pointer;
 }

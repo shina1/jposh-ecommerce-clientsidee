@@ -1,6 +1,6 @@
 import axios from "axios";
 import { CART_CLEAR_ITEMS } from "../constants/cartConstant";
-import { ORDER_ANALYSIS_FAIL, ORDER_ANALYSIS_REQUEST, ORDER_ANALYSIS_SUCCESS, ORDER_CREATE_FAIL, ORDER_CREATE_REQUEST, ORDER_CREATE_SUCCESS, ORDER_DELIVER_FAIL, ORDER_DELIVER_REQUEST, ORDER_DELIVER_SUCCESS, ORDER_DETAILS_FAIL, ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS, ORDER_LIST_FAIL, ORDER_LIST_MY_FAIL, ORDER_LIST_MY_REQUEST, ORDER_LIST_MY_SUCCESS, ORDER_LIST_NEW_FAIL, ORDER_LIST_NEW_REQUEST, ORDER_LIST_NEW_SUCCESS, ORDER_LIST_REQUEST, ORDER_LIST_SUCCESS, ORDER_PAY_FAIL, ORDER_PAY_REQUEST, ORDER_PAY_SUCCESS } from "../constants/orderConstants";
+import { ORDER_ANALYSIS_FAIL, ORDER_ANALYSIS_REQUEST, ORDER_ANALYSIS_SUCCESS, ORDER_CREATE_FAIL, ORDER_CREATE_REQUEST, ORDER_CREATE_SUCCESS, ORDER_DELETE_FAIL, ORDER_DELETE_REQUEST, ORDER_DELETE_SUCCESS, ORDER_DELIVER_FAIL, ORDER_DELIVER_REQUEST, ORDER_DELIVER_SUCCESS, ORDER_DETAILS_FAIL, ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS, ORDER_LIST_FAIL, ORDER_LIST_MY_FAIL, ORDER_LIST_MY_REQUEST, ORDER_LIST_MY_SUCCESS, ORDER_LIST_NEW_FAIL, ORDER_LIST_NEW_REQUEST, ORDER_LIST_NEW_SUCCESS, ORDER_LIST_REQUEST, ORDER_LIST_SUCCESS, ORDER_PAY_FAIL, ORDER_PAY_REQUEST, ORDER_PAY_SUCCESS } from "../constants/orderConstants";
 import { LOCAL_BASE_URL, PRODUCTION_BASE_URL } from "../utils/requestMethods";
 
 
@@ -134,7 +134,7 @@ export const payOrder = (orderId, paymentResult) => async(dispatch, getState) =>
 
 
 // deliver order
-export const deliverOrder = (order) => async (dispatch, getState) => {
+export const deliverOrder = (orderId) => async (dispatch, getState) => {
     try {
       dispatch({
         type: ORDER_DELIVER_REQUEST,
@@ -151,7 +151,7 @@ export const deliverOrder = (order) => async (dispatch, getState) => {
       }
   
       const { data } = await axios.put(
-        `${PRODUCTION_BASE_URL}orders/${order._id}/deliver`,
+        `${PRODUCTION_BASE_URL}order/${orderId}/deliver`,
         {},
         config
       )
@@ -177,7 +177,7 @@ export const deliverOrder = (order) => async (dispatch, getState) => {
 
 
   // list order of a user
-  export const listMyOrders = () => async (dispatch, getState) => {
+  export const listMyOrders = (userID) => async (dispatch, getState) => {
     try {
       dispatch({
         type: ORDER_LIST_MY_REQUEST,
@@ -193,8 +193,8 @@ export const deliverOrder = (order) => async (dispatch, getState) => {
         },
       }
   
-      const { data } = await axios.get(`${PRODUCTION_BASE_URL}order/findall`, config)
-  
+      const { data } = await axios.get(`${PRODUCTION_BASE_URL}order/userorder/${userID}`, config)
+     console.log('this are your list of orders',data);
       dispatch({
         type: ORDER_LIST_MY_SUCCESS,
         payload: data,
@@ -323,6 +323,44 @@ export const deliverOrder = (order) => async (dispatch, getState) => {
       }
       dispatch({
         type: ORDER_ANALYSIS_FAIL,
+        payload: message,
+      })
+    }
+  }
+
+  // delete an order
+  
+  export const deleteOrder = (id) => async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: ORDER_DELETE_REQUEST,
+      })
+  
+      const {
+        userLogin: { userInfo },
+      } = getState()
+  
+      const config = {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      }
+  
+      await axios.delete(`${PRODUCTION_BASE_URL}order/delete/${id}`, config)
+  
+      dispatch({
+        type: ORDER_DELETE_SUCCESS,
+      })
+    } catch (error) {
+      const message =
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+      if (message === 'Not authorized, token failed') {
+        dispatch(logout())
+      }
+      dispatch({
+        type: ORDER_DELETE_FAIL,
         payload: message,
       })
     }

@@ -14,6 +14,8 @@ import { addProduct } from '../../store/cartStore'
 import { listProductDetails } from '../../actions/productActions';
 import { addToCart } from '../../actions/cartAction';
 import SingleProductReviewCarousel from '../../Components/reviewCarousel';
+import Message from '../../Components/message/Message';
+import Loader from '../../Components/loader/Loader';
 
 const SingleProduct = () => {
     const location = useLocation()
@@ -58,10 +60,18 @@ const SingleProduct = () => {
 
   return (
     <div className='single-product-container'>
+        {
+            error && <Message type={'error'} message={"Failed to load, check your connection!"} />
+        }
+        {
+            loading && <Loader />
+        }
         {/* <ResponsiveHeader/> */}
+        {
+            product ? 
         <section className='single-product-inner-container'>
             <div className='image-cont'>
-                <SingleProductReviewCarousel mainImage={product.img} frontImage={product.img} backImage={product.img} />
+               {product && <SingleProductReviewCarousel mainImage={product.img} frontImage={product.img} backImage={product.img} /> }
                 {
                     product.video && 
                     <video controls autoPlay={true} muted playsInline >
@@ -110,7 +120,9 @@ const SingleProduct = () => {
                     <button className='add-to-cart' onClick={() => openNotificationWithIcon('success', 'top')} >ADD TO CART</button>
                 </div>
             </div>
-        </section>
+        </section> :
+        <Loader />
+}
         <Products />
         <Newsletter />
         {/* <Footer /> */}

@@ -54,6 +54,12 @@ export default function Sidebar() {
                 Products
               </li>
             </Link>
+            <Link to="/dash-orders" className="link">
+              <li className="sidebarListItem">
+                <Storefront className="sidebarIcon" />
+                Orders
+              </li>
+            </Link>
             <Link to="/" className="link">
               <li className="sidebarListItem">
                 <Storefront className="sidebarIcon" />
@@ -63,6 +69,7 @@ export default function Sidebar() {
             {/* <li className="sidebarListItem">
               <BarChart className="sidebarIcon" />
               Reports
+              /dash-orders
             </li> */}
           </ul>
         </div>

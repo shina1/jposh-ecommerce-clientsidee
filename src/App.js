@@ -6,6 +6,8 @@ import Loader from './Components/loader/Loader';
 import ErrorBoundary from "./Components/errorBoundary/index";
 import ResponsiveHeader from './Components/Header-component/ResponsiveHeader';
 import Footer from './Components/Footer';
+
+
 const Home = lazy(() => import('./screens/home-screen'));
 const SingleProduct = lazy(() => import('./screens/single-product'));
 const ProductList = lazy(() => import('./screens/product-list/index.js'));
@@ -28,6 +30,8 @@ const OrderScreen = lazy(() => import('./screens/orderScreen'));
 const DashOrderList = lazy(() => import('./adminDashboard/pages/orderList/orderList'));
 const AboutScreen = lazy(() => import('./screens/aboutPage'));
 const Categories = lazy(() => import('./Components/Categories/index'))
+const MyOrders  = lazy(() => import('./screens/myOrders'))
+const DashOrderInfo  = lazy(() => import('./adminDashboard/pages/order'))
 
 
 
@@ -49,6 +53,7 @@ const App = () => {
         <Route path='/dash-products' element={<DashProductList />} />
         <Route path='/dash-product/:productId' element={<DashProduct />}/>
         <Route path='/dash-orders' element={<DashOrderList />} />
+        <Route path='/dash-order/:orderId' element={<DashOrderInfo />} />
         {/* admin dashboard Routes end */}
         
         <Route path='/success' element={<Success />} />
@@ -64,6 +69,7 @@ const App = () => {
         <Route path='/order/:id' element={<OrderScreen />} />
         <Route path='/about-us' element={<AboutScreen />} />
         <Route path='/categories' element={<Categories />} />
+        <Route path='/my-orders' element={<MyOrders />} />
       </Routes>
       <Footer />
       </Suspense>

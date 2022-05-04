@@ -28,6 +28,16 @@ const Home = () => {
         <Products />
         <Testimonial />
         <Newsletter />
+        <div>
+            <a
+            href="https://wa.me/+447470708848"
+            class="whatsapp_float"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i class="fa fa-whatsapp whatsapp-icon"></i>
+          </a>
+        </div>
       </Suspense>
     </div>
   )

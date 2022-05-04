@@ -68,17 +68,28 @@ const ResponsiveHeader = () => {
           </li>
         </ul>
       </div>
+      {/* my-orders */}
       <ul className="signin-up">
         {
             userInfo !== null && (
               userInfo && userInfo.isAdmin === true ? ( <li>
                 <Select defaultValue={userInfo.name} style={{ width: 100 }} className="option" >
                   <Option key={1}> <Link to='/admin-home'>Admin</Link></Option>
+                  <Option key={3}> <Link to='/my-orders'>My orders</Link></Option>
                   <Option key={2}><button onClick={logoutHandler}>Logout</button></Option>
                 </Select>
              </li>) :
               <li className="sign-in">
-                <button onClick={logoutHandler} to=''>Logout</button>
+                <Select defaultValue={userInfo && userInfo.name} style={{ width: 100 }} className="option" >
+                  <Option key={4}> <Link to='/my-orders'>My orders</Link></Option>
+                  <Option key={5}><button onClick={logoutHandler}>Logout</button></Option>
+                </Select>
+                {/* <select>
+                  <option>{userInfo && userInfo.name}</option>
+                  <option><Link to='/my-orders'>My orders</Link></option>
+                  <option><button onClick={logoutHandler} to=''>Logout</button></option>
+                </select> */}
+                
               </li>
             )
         }
